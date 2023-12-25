@@ -7,7 +7,9 @@ export default function Home() {
   const [openAddTask, setOpenAddTask] = useState(false);
 
   return (
-    <div className={`relative text-gray-950 w-screen min-h-screen flex flex-col  `}>
+    <div
+      className={`relative bg-white text-gray-950 w-screen min-h-screen flex flex-col  `}
+    >
       <Navbar openAddTask={openAddTask} setOpenAddTask={setOpenAddTask} />
       <div className={`${openAddTask ? "blur" : ""} mb-[90px]`}>
         <MainPage />
