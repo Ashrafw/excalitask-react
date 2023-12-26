@@ -1,4 +1,3 @@
-"use client";
 import React, { useEffect, useState } from "react";
 import { IoIosArrowDown } from "react-icons/io";
 import SubItem from "./SubItem";
@@ -154,6 +153,15 @@ const TaskWithSubItem = ({
     setSubTaskTitle("");
     setFocusedSubtask(true);
   };
+  const handleIsSubtaskComplete = () => {
+    const total = task.subTaskList.length;
+    const complete = task.subTaskList.filter((item) => item.isComplete).length;
+    if (total === complete) {
+      return true;
+    } else {
+      return false;
+    }
+  };
   return (
     <div className=" rounded border -mt-[2px] bg-slate-50 w-full ">
       <button
@@ -184,7 +192,11 @@ const TaskWithSubItem = ({
           <div className={`flex w-full items-center cursor-pointer text-start`}>
             {/* <input type="checkbox" className=" m-2 my-[9px]" /> */}
             <div className=" h-[2px] w-[48px] cursor-pointer"></div>
-            <label className="w-full text-base text-gray-900  cursor-pointer ">
+            <label
+              className={`w-full text-base ${
+                handleIsSubtaskComplete() ? "text-gray-900/25" : "text-gray-900"
+              }   cursor-pointer `}
+            >
               {`${
                 prefix === "numbers"
                   ? `${index + 1}. `

@@ -1,4 +1,3 @@
-"use client";
 import { useEffect, useState } from "react";
 import { FaFont } from "react-icons/fa";
 import logo from "../../public/logo.png";
@@ -42,7 +41,7 @@ const Navbar = ({
         {/* <div className={`  `}> */}
         <button
           onClick={() => {
-            if (tasksMain.length > 9) {
+            if (tasksMain.length > 3) {
               setShowAlert(true);
             } else {
               setOpenAddTask((prev) => !prev);
@@ -53,9 +52,9 @@ const Navbar = ({
         >
           <FaPlus />
           {showAlert && (
-            <div className=" z-50 absolute top-full --translate-x-[10px] w-[220px] shadow-md border-slate-400 text-base rounded translate-y-[8px]">
-              <div className=" rounded-lg  bg-slate-50 p-2">
-                You can only have 3 main tasks.
+            <div className=" z-50 absolute top-full --translate-x-[10px] w-[300px] shadow-md border-4 overflow-hidden bg-white border-slate-600 text-base rounded translate-y-[8px]">
+              <div className=" rounded-lg  bg-white p-2">
+                You can only have 4 main tasks. More features coming soon.
               </div>
             </div>
           )}

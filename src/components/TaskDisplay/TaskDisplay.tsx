@@ -9,7 +9,6 @@ import AddSingleTask from "../AddSingleTask/AddSingleTask";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
 import { FaPlus } from "react-icons/fa6";
 import { CircularProgress } from "@mui/material";
-// import { CircularProgressbar } from 'react-circular-progressbar';
 type TaskDisplayType = {
   task: MainTaskType;
   editTaskId: string;
@@ -131,7 +130,7 @@ const TaskDisplay = ({
                   style={{
                     width: "100%",
                     height: "100%",
-                    color: "rgba(255, 255, 255, 0.6)",
+                    color: "rgba(255, 255, 255, 0.)",
                     borderRadius: "10px",
                   }}
                 />

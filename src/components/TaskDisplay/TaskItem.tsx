@@ -1,4 +1,3 @@
-"use client";
 import { MainTaskType, SubTaskType, taskType, usePersistStore } from "../../lib/zustand";
 import { FaRegTrashAlt } from "react-icons/fa";
 import { FaPlus } from "react-icons/fa6";

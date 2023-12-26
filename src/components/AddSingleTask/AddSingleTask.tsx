@@ -1,4 +1,3 @@
-"use client";
 import React, { useEffect, useState } from "react";
 import { getDateFormatStart } from "../../helper/helper";
 import { MdModeEdit } from "react-icons/md";
