@@ -1,13 +1,11 @@
-"ues client";
-
 import { SubTaskType, taskType, usePersistStore } from "../../lib/zustand";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { FaRegTrashAlt } from "react-icons/fa";
 
 const SubItem = ({
   subTask,
   mainTaskId,
-  isEditMode,
+  // isEditMode,
   isFinishEdit,
   taskId,
   editTaskId,
@@ -15,7 +13,7 @@ const SubItem = ({
   doesItHaveSubtasks,
   isThisTheEditedTask,
   isLastSubItem,
-  prefix,
+  // prefix,
   theme,
 }: {
   subTask: SubTaskType;
@@ -58,18 +56,18 @@ const SubItem = ({
       }
     }, 500);
   }, [titleSubEdit]);
-  const handleDeleteSubTaskNew = (id: string) => {
-    const newTask = tasksMain.map((taskInner) => {
-      if (taskInner.id === editTaskId) {
-        // Update the tasklist for the specific object
-        const taskListInner = taskInner.taskList.filter((item) => item.id !== id);
-        return { ...taskInner, taskList: taskListInner };
-      } else {
-        return taskInner;
-      }
-    });
-    setTaskMain(newTask);
-  };
+  // const handleDeleteSubTaskNew = (id: string) => {
+  //   const newTask = tasksMain.map((taskInner) => {
+  //     if (taskInner.id === editTaskId) {
+  //       // Update the tasklist for the specific object
+  //       const taskListInner = taskInner.taskList.filter((item) => item.id !== id);
+  //       return { ...taskInner, taskList: taskListInner };
+  //     } else {
+  //       return taskInner;
+  //     }
+  //   });
+  //   setTaskMain(newTask);
+  // };
 
   const handleDeleteSubTask = (id: string) => {
     const theEditedTask = tasksMain.filter((taskInner) => taskInner.id === editTaskId)[0];

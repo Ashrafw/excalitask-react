@@ -6,7 +6,6 @@ import { MdOutlineMoreVert } from "react-icons/md";
 import { FaRegTrashAlt } from "react-icons/fa";
 import { IoMdReturnLeft } from "react-icons/io";
 import AddSingleTask from "../AddSingleTask/AddSingleTask";
-import { useAutoAnimate } from "@formkit/auto-animate/react";
 import { FaPlus } from "react-icons/fa6";
 import { CircularProgress } from "@mui/material";
 type TaskDisplayType = {
@@ -24,11 +23,9 @@ const TaskDisplay = ({
 }: TaskDisplayType) => {
   const { tasksMain, setTaskMain } = usePersistStore();
 
-  const [isShown, setIsShown] = useState(false);
-  const [addSingleTask, setAddSingleTask] = useState(false);
-  const [dataAll, setDataAll] = useState<MainTaskType[]>(tasksMain);
+  const [_, setIsShown] = useState(false);
+  // const [addSingleTask, setAddSingleTask] = useState(false);
   const [isFinishEdit, setIsFinishEdit] = useState(false);
-  const [isSaveAllClick, setIsSaveAllClick] = useState(false);
   const [categoryEdit, setCategoryEdit] = useState(task.title);
 
   const [focusedSubtask, setFocusedSubtask] = useState(false);
@@ -48,7 +45,7 @@ const TaskDisplay = ({
     });
     setTaskMain(newTask);
   };
-  const [animationParent] = useAutoAnimate();
+  // const [animationParent] = useAutoAnimate();
   useEffect(() => {
     setTimeout(() => {
       const newTask = tasksMain.map((taskInner) => {
@@ -64,7 +61,6 @@ const TaskDisplay = ({
   }, [categoryEdit]);
   const handleFinishEdit = () => {
     if (categoryEdit !== task.title) handleCategoryChange();
-    setIsSaveAllClick(true);
     setIsFinishEdit(false);
   };
 
@@ -217,7 +213,6 @@ const TaskDisplay = ({
           >
             <AddSingleTask
               taskId={task.id}
-              setAddSingleTask={setAddSingleTask}
               theme={task.theme}
               task={task}
               focused={focused}

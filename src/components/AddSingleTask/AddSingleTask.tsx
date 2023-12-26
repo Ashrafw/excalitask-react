@@ -1,27 +1,21 @@
 import React, { useEffect, useState } from "react";
-import { getDateFormatStart } from "../../helper/helper";
-import { MdModeEdit } from "react-icons/md";
 import { v4 as uuidv4 } from "uuid";
 import { MainTaskType, taskType, usePersistStore } from "../../lib/zustand";
 import AddSingleSubTask from "./AddSingleSubTask";
-import { FaPlus } from "react-icons/fa6";
 import { FiPlus } from "react-icons/fi";
 import { IoMdSettings } from "react-icons/io";
 import { AddSettingSingle } from "./AddSettingSingle";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
 import { IoIosArrowUp } from "react-icons/io";
-import { IoIosArrowDown } from "react-icons/io";
 
 const AddSingleTask = ({
   taskId,
-  setAddSingleTask,
   theme,
   task,
   focused,
   setFocused,
 }: {
   taskId: string;
-  setAddSingleTask: React.Dispatch<React.SetStateAction<boolean>>;
   theme: string;
   task: MainTaskType;
   focused: boolean;
@@ -35,42 +29,42 @@ const AddSingleTask = ({
   const [isEditSettings, setIsEditSettings] = useState(false);
   const { tasksMain, setTaskMain } = usePersistStore();
   const [animationNew] = useAutoAnimate();
-  const handleSubmitTask = (e: any) => {
-    e.preventDefault();
-    setTaskList((prev) => [
-      ...prev,
-      {
-        id: uuidv4(),
-        title: taskTitle,
-        isComplete: false,
-        subTaskList: [],
-        isSubtask: false,
-      },
-    ]);
-    setTaskTitle("");
-  };
-  const handleSubmitAll = (e: any) => {
-    e.preventDefault();
+  // const handleSubmitTask = (e: any) => {
+  //   e.preventDefault();
+  //   setTaskList((prev) => [
+  //     ...prev,
+  //     {
+  //       id: uuidv4(),
+  //       title: taskTitle,
+  //       isComplete: false,
+  //       subTaskList: [],
+  //       isSubtask: false,
+  //     },
+  //   ]);
+  //   setTaskTitle("");
+  // };
+  // const handleSubmitAll = (e: any) => {
+  //   e.preventDefault();
 
-    if (taskList.length > 0) {
-      const newTask = tasksMain.map((itemTask) => {
-        if (itemTask.id === taskId) {
-          return {
-            ...itemTask,
-            theme: editTheme,
-            fontStyle: editFontStyle,
-            prefix: editPrefix,
-            taskList: [...itemTask.taskList, ...taskList],
-          };
-        } else {
-          return itemTask;
-        }
-      });
+  //   if (taskList.length > 0) {
+  //     const newTask = tasksMain.map((itemTask) => {
+  //       if (itemTask.id === taskId) {
+  //         return {
+  //           ...itemTask,
+  //           theme: editTheme,
+  //           fontStyle: editFontStyle,
+  //           prefix: editPrefix,
+  //           taskList: [...itemTask.taskList, ...taskList],
+  //         };
+  //       } else {
+  //         return itemTask;
+  //       }
+  //     });
 
-      setTaskMain(newTask);
-    }
-    setAddSingleTask(false);
-  };
+  //     setTaskMain(newTask);
+  //   }
+  //   setAddSingleTask(false);
+  // };
   console.log("theme", theme);
   useEffect(() => {
     if (task.fontStyle !== editFontStyle) {

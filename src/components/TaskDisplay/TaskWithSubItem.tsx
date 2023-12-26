@@ -14,15 +14,15 @@ const TaskWithSubItem = ({
   mainTaskId,
   isEditMode,
   editTaskId,
-  setEditTaskId,
+  // setEditTaskId,
   isFinishEdit,
-  setIsFinishEdit,
+  // setIsFinishEdit,
   isThisTheEditedTask,
-  isLastItem,
+  // isLastItem,
   theme,
   index,
   prefix,
-  withSubTask,
+  // withSubTask,
   focusedSubtask,
   setFocusedSubtask,
   onFocusSubtask,
@@ -88,32 +88,32 @@ const TaskWithSubItem = ({
     });
     setTaskMain(newTask);
   };
-  const updateTaskCompletion = (targetComplete: boolean) => {
-    const newTask = tasksMain.map((taskInner) => {
-      if (taskInner.id === mainTaskId) {
-        // Update the tasklist for the specific object
-        const taskListInner = taskInner.taskList.map((item) => {
-          if (item.id === task.id) {
-            return { ...item, isComplete: targetComplete };
-          } else {
-            return item;
-          }
-        });
-        return { ...taskInner, taskList: taskListInner };
-      } else {
-        return taskInner;
-      }
-    });
+  // const updateTaskCompletion = (targetComplete: boolean) => {
+  //   const newTask = tasksMain.map((taskInner) => {
+  //     if (taskInner.id === mainTaskId) {
+  //       // Update the tasklist for the specific object
+  //       const taskListInner = taskInner.taskList.map((item) => {
+  //         if (item.id === task.id) {
+  //           return { ...item, isComplete: targetComplete };
+  //         } else {
+  //           return item;
+  //         }
+  //       });
+  //       return { ...taskInner, taskList: taskListInner };
+  //     } else {
+  //       return taskInner;
+  //     }
+  //   });
 
-    setTaskMain(newTask);
-  };
+  //   setTaskMain(newTask);
+  // };
 
   useEffect(() => {
     if (isThisTheEditedTask && isFinishEdit) {
       setIsDropDown(true);
     }
   }, [isFinishEdit, isThisTheEditedTask]);
-  const checkPrefix = (pref: string, index: number) => {
+  const checkPrefix = (index: number) => {
     if (letters[index]) {
       return `${letters[index]}. `;
     } else {
@@ -201,7 +201,7 @@ const TaskWithSubItem = ({
                 prefix === "numbers"
                   ? `${index + 1}. `
                   : prefix === "letters"
-                  ? checkPrefix(prefix, index)
+                  ? checkPrefix(index)
                   : ""
               }`}
 
@@ -233,7 +233,7 @@ const TaskWithSubItem = ({
                 doesItHaveSubtasks={task.isSubtask}
                 isThisTheEditedTask={isThisTheEditedTask}
                 isLastSubItem={task.subTaskList.length === i + 1}
-                prefix={checkPrefix(prefix, i)}
+                prefix={checkPrefix(i)}
                 theme={theme}
               />
             ))

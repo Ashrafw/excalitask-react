@@ -1,10 +1,10 @@
 import { MainTaskType, usePersistStore } from "../lib/zustand";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import TaskDisplay from "./TaskDisplay/TaskDisplay";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
 
 const MainPage = () => {
-  const { tasksMain, setTaskMain } = usePersistStore();
+  const { tasksMain } = usePersistStore();
   const [data, setData] = useState<MainTaskType[]>();
   const [editTaskId, setEditTaskId] = useState<string>("");
   const [animationMother] = useAutoAnimate();

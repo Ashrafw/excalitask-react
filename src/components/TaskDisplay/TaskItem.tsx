@@ -1,4 +1,4 @@
-import { MainTaskType, SubTaskType, taskType, usePersistStore } from "../../lib/zustand";
+import { SubTaskType, taskType, usePersistStore } from "../../lib/zustand";
 import { FaRegTrashAlt } from "react-icons/fa";
 import { FaPlus } from "react-icons/fa6";
 import { v4 as uuidv4 } from "uuid";
@@ -9,18 +9,18 @@ import { letters } from "../../helper/helper";
 const TaskItem = ({
   task,
   mainTaskId,
-  isEditMode,
+  // isEditMode,
   editTaskId,
-  setEditTaskId,
+  // setEditTaskId,
   isFinishEdit,
-  setIsFinishEdit,
+  // setIsFinishEdit,
   isThisTheEditedTask,
-  isLastItem,
+  // isLastItem,
   index,
   prefix,
   theme,
   focusedSubtask,
-  setFocusedSubtask,
+  // setFocusedSubtask,
   onFocusSubtask,
   onBlurSubtask,
 }: {
@@ -41,17 +41,17 @@ const TaskItem = ({
   onFocusSubtask: () => void;
   onBlurSubtask: () => void;
 }) => {
-  const [actualSelectedTask, setActualSelectedTask] = useState(task);
-  const [taskList, setTaskList] = useState([]);
+  // const [actualSelectedTask, setActualSelectedTask] = useState(task);
+  // const [taskList, setTaskList] = useState([]);
   const [subTaskList, setSubTaskList] = useState<SubTaskType[]>([]);
   const [subTaskTitle, setSubTaskTitle] = useState("");
   const [titleEdit, setTitleEdit] = useState(task.title);
   const { tasksMain, setTaskMain } = usePersistStore();
   const [openSubtask, setOpenSubtask] = useState(false);
-  const [focused, setFocused] = useState(false);
+  // const [focused, setFocused] = useState(false);
 
-  const onFocus = () => setFocused(true);
-  const onBlur = () => setFocused(false);
+  // const onFocus = () => setFocused(true);
+  // const onBlur = () => setFocused(false);
   useEffect(() => {
     setTimeout(() => {
       if (task.title !== titleEdit) {
@@ -89,7 +89,7 @@ const TaskItem = ({
     setTaskMain(newTask);
   };
 
-  const checkPrefix = (pref: string, index: number) => {
+  const checkPrefix = (index: number) => {
     if (letters[index]) {
       return `${letters[index]}. `;
     } else {
@@ -142,37 +142,37 @@ const TaskItem = ({
     setSubTaskTitle("");
     onFocusSubtask();
   };
-  const handleFinal = () => {
-    const newTask = tasksMain.map((taskInner) => {
-      if (taskInner.id === mainTaskId) {
-        // Update the tasklist for the specific object
-        const taskListInner = taskInner.taskList.map((item) => {
-          if (item.id === task.id) {
-            return {
-              ...item,
-              isSubtask: true,
-              subTaskList: [
-                ...item.subTaskList,
-                {
-                  id: uuidv4(),
-                  title: subTaskTitle,
-                  isComplete: false,
-                  isSubtask: true,
-                },
-              ],
-            };
-          } else {
-            return item;
-          }
-        });
-        return { ...taskInner, taskList: taskListInner };
-      } else {
-        return taskInner;
-      }
-    });
+  // const handleFinal = () => {
+  //   const newTask = tasksMain.map((taskInner) => {
+  //     if (taskInner.id === mainTaskId) {
+  //       // Update the tasklist for the specific object
+  //       const taskListInner = taskInner.taskList.map((item) => {
+  //         if (item.id === task.id) {
+  //           return {
+  //             ...item,
+  //             isSubtask: true,
+  //             subTaskList: [
+  //               ...item.subTaskList,
+  //               {
+  //                 id: uuidv4(),
+  //                 title: subTaskTitle,
+  //                 isComplete: false,
+  //                 isSubtask: true,
+  //               },
+  //             ],
+  //           };
+  //         } else {
+  //           return item;
+  //         }
+  //       });
+  //       return { ...taskInner, taskList: taskListInner };
+  //     } else {
+  //       return taskInner;
+  //     }
+  //   });
 
-    setTaskMain(newTask);
-  };
+  //   setTaskMain(newTask);
+  // };
   // useEffect(() => {
   //   if (isSaveAllClick) {
   //     handleFinal();
@@ -263,9 +263,7 @@ const TaskItem = ({
               <div key={uuidv4()} className="flex gap-2 border ">
                 <button
                   onClick={() =>
-                    setSubTaskList((prev) =>
-                      subTaskList.filter((val) => val.id !== item.id)
-                    )
+                    setSubTaskList(() => subTaskList.filter((val) => val.id !== item.id))
                   }
                   className="flex items-center justify-center w-[30px] h-[30px] text-sm  text-gray-400 p-2  rounded bg-gray-200 hover:bg-gray-300  "
                 >
@@ -320,7 +318,7 @@ const TaskItem = ({
               prefix === "numbers"
                 ? `${index + 1}. `
                 : prefix === "letters"
-                ? checkPrefix(prefix, index)
+                ? checkPrefix(index)
                 : ""
             }`}
             {task.title}

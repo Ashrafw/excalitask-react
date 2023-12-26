@@ -1,10 +1,6 @@
 import { useEffect, useState } from "react";
-import { FaFont } from "react-icons/fa";
-import logo from "../../public/logo.png";
 import AddTaskForm from "./AddTaskForm/AddTaskForm";
-import MainMenu from "./Menu/MainMenu";
 import { usePersistStore } from "../lib/zustand";
-import { FiPlus } from "react-icons/fi";
 import { FaPlus } from "react-icons/fa6";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
 
@@ -16,10 +12,9 @@ const Navbar = ({
   setOpenAddTask: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
   const [showAlert, setShowAlert] = useState(false);
-  const { tasksMain, setTaskMain } = usePersistStore();
+  const { tasksMain } = usePersistStore();
   const [animationAlert] = useAutoAnimate();
 
-  const handleAddTask = () => {};
   useEffect(() => {
     if (showAlert) {
       setTimeout(() => {

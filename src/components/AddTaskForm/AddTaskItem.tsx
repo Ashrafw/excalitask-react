@@ -5,7 +5,6 @@ import { FaChevronUp } from "react-icons/fa6";
 import { FaChevronDown } from "react-icons/fa6";
 import { FaPlus } from "react-icons/fa6";
 import { SubTaskType, taskType } from "../../lib/zustand";
-import { useAutoAnimate } from "@formkit/auto-animate/react";
 import { letters } from "../../helper/helper";
 
 type AddTaskItemType = {
@@ -21,11 +20,11 @@ type AddTaskItemType = {
 };
 const AddTaskItem = ({
   actualTask,
-  subTaskList,
+  // subTaskList,
   index,
   setTaskList,
   theme,
-  fontStyle,
+  // fontStyle,
   prefix,
 }: AddTaskItemType) => {
   const [subTaskTitle, setSubTaskTitle] = useState("");
@@ -34,8 +33,8 @@ const AddTaskItem = ({
   const [focused, setFocused] = useState(false);
   const onFocus = () => setFocused(true);
   const onBlur = () => setFocused(false);
-  const [animationParent1] = useAutoAnimate();
-  const [animationParent2] = useAutoAnimate();
+  // const [animationParent1] = useAutoAnimate();
+  // const [animationParent2] = useAutoAnimate();
 
   const handleSubmitSubTask = (e: any) => {
     e.preventDefault();
@@ -65,7 +64,7 @@ const AddTaskItem = ({
     setSubTaskTitle("");
   };
 
-  const deleteTask = (e: any) => {
+  const deleteTask = () => {
     setTaskList((prev: taskType[]): any => {
       return prev.filter((task) => task.id !== actualTask.id);
     });
@@ -83,7 +82,7 @@ const AddTaskItem = ({
     });
   };
 
-  const checkPrefix = (pref: string, index: number) => {
+  const checkPrefix = (index: number) => {
     if (letters[index]) {
       return `${letters[index]}. `;
     } else {
@@ -106,7 +105,7 @@ const AddTaskItem = ({
                 ? ""
                 : prefix === "numbers"
                 ? `${index}. `
-                : checkPrefix(prefix, index)
+                : checkPrefix(index)
             }`}
             {actualTask.title}
           </h1>
@@ -140,7 +139,7 @@ const AddTaskItem = ({
         {dropDown && (
           <>
             <div className=" pl-8 mt-2 flex flex-col gap-1 ">
-              {actualTask.subTaskList?.map((item, index) => (
+              {actualTask.subTaskList?.map((item) => (
                 <div
                   key={item.id}
                   className="border-2 p-1 flex justify-between bg-gray-100 px-4 w-full rounded "

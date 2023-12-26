@@ -1,11 +1,8 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { IoMenuOutline } from "react-icons/io5";
 
 const MainMenu = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [themeColor, setThemeColor] = useState("");
-  const [textSize, setTextSize] = useState("");
-  const [fontStyle, setFontStyle] = useState("");
   return (
     <div className="relative">
       <button

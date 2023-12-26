@@ -1,5 +1,3 @@
-import React from "react";
-
 type AddSettingType = {
   theme: string;
   fontStyle: string;

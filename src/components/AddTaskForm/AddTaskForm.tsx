@@ -4,7 +4,6 @@ import { MdModeEdit } from "react-icons/md";
 import { v4 as uuidv4 } from "uuid";
 import AddTaskItem from "./AddTaskItem";
 import { taskType, usePersistStore } from "../../lib/zustand";
-import { IoSettingsSharp } from "react-icons/io5";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
 import AddSetting from "./AddSetting";
 import { FaPlus } from "react-icons/fa6";
@@ -16,7 +15,6 @@ const AddTaskForm = ({ setOpenAddTask }: AddModalTypes) => {
   const [category, setCategory] = useState(getDateFormatStart());
   const [taskTitle, setTaskTitle] = useState("");
   const [editCat, setEditCat] = React.useState(false);
-  const [isSettingOpen, setIsSettingOpen] = React.useState(false);
   const [taskList, setTaskList] = useState<taskType[]>([]);
   const { tasksMain, setTaskMain } = usePersistStore();
   const [animationParent] = useAutoAnimate();

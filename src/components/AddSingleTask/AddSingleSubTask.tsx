@@ -5,7 +5,6 @@ import { FaPlus } from "react-icons/fa6";
 import { FaChevronUp } from "react-icons/fa6";
 import { FaChevronDown } from "react-icons/fa6";
 import { v4 as uuidv4 } from "uuid";
-import { capitalizeFirstLetter } from "../../helper/helper";
 import { FiPlus } from "react-icons/fi";
 type AddTaskItemType = {
   actualTask: taskType;
@@ -16,8 +15,8 @@ type AddTaskItemType = {
 };
 const AddSingleSubTask = ({
   actualTask,
-  subTaskList,
-  index,
+  // subTaskList,
+  // index,
   setTaskList,
   theme,
 }: AddTaskItemType) => {
@@ -28,7 +27,7 @@ const AddSingleSubTask = ({
   const onFocus = () => setFocused(true);
   const onBlur = () => setFocused(false);
 
-  const deleteTask = (e: any) => {
+  const deleteTask = () => {
     setTaskList((prev: taskType[]): any => {
       return prev.filter((task) => task.id !== actualTask.id);
     });
