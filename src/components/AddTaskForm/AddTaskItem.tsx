@@ -91,12 +91,12 @@ const AddTaskItem = ({
     }
   };
   return (
-    <div className="border rounded py-1 bg-gray-100 px-4 w-full flex flex-col ">
+    <div className="border rounded py-[2px] bg-gray-100 px-4 w-full flex flex-col ">
       <div className="flex justify-between items-center ">
         <div className="flex items-center">
           <button
             onClick={deleteTask}
-            className="  bg-opacity-50 text-gray-400 text-md p-1 rounded-md mr-1 "
+            className="  bg-opacity-50 text-gray-400 text-base p-1 rounded-md mr-1 "
           >
             <FaRegTrashAlt />
           </button>{" "}
@@ -119,7 +119,7 @@ const AddTaskItem = ({
               //   setOpenSubtask((prev) => !prev);
               setDropDown((prev) => !prev);
             }}
-            className="   text-gray-600 text-md p-1 px-2 rounded-md bg-gray-200 shadow  "
+            className="   text-gray-600 text-sm py-[2px] px-2 rounded bg-gray-200 shadow  "
           >
             {dropDown ? <FaChevronUp /> : <FaChevronDown />}
           </button>
@@ -130,7 +130,7 @@ const AddTaskItem = ({
               setOpenSubtask((prev) => !prev);
               setDropDown((prev) => !prev);
             }}
-            className="   text-gray-500 text-md p-1 px-2 rounded-md  bg-gray-200 shadow "
+            className="   text-gray-500 text-sm py-[3px] px-2 rounded  bg-gray-200 shadow "
           >
             <FaPlus />
           </button>
@@ -148,11 +148,11 @@ const AddTaskItem = ({
                   <div className="flex gap-2 ">
                     <button
                       onClick={() => deleteSubTask(item.id)}
-                      className="  bg-opacity-50 text-gray-400 text-md  rounded-md mr-2  "
+                      className="  bg-opacity-50 text-gray-400 text-base  rounded-md mr-2  "
                     >
                       <FaRegTrashAlt />
                     </button>{" "}
-                    <h1 className=" w-full text-base flex gap-1">
+                    <h1 className=" w-full text-sm flex gap-1">
                       {/* {`${
                         prefix === "numbers"
                           ? `${index + 1}. `
@@ -174,7 +174,7 @@ const AddTaskItem = ({
                       required
                       type="text"
                       placeholder="Add a subtask"
-                      className=" border-2 py-1 px-4 w-full my-2 text-base rounded"
+                      className=" border-2 py-1 px-4 w-full my-2 text-sm rounded"
                       value={subTaskTitle}
                       onFocus={onFocus}
                       onBlur={onBlur}
@@ -182,7 +182,7 @@ const AddTaskItem = ({
                       onChange={(e) => setSubTaskTitle(e.target.value)}
                     />
                     <button
-                      className={` ${theme} w-[40px] text-gray-100 text-base p-1 rounded h-[30px] flex items-center justify-center `}
+                      className={` ${theme} w-[40px] text-gray-100 text-base p-1 rounded h-[29px] flex items-center justify-center `}
                     >
                       <FaPlus />
                     </button>

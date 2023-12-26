@@ -193,7 +193,7 @@ const AddSingleTask = ({
           className=" flex justify-between items-center cursor-pointer p-1 rounded bg-white"
           onClick={() => setIsEditSettings((prev) => !prev)}
         >
-          <h1 className=" pl-1 text-xs font-medium text-gray-800">Customize settings</h1>
+          <h1 className=" pl-1 text-sm font-medium text-gray-800">Customize settings</h1>
           <div className={` flex items-center justify-center p-1 bg-black/10 rounded`}>
             {isEditSettings ? (
               <button className={`  `}>

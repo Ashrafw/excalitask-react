@@ -15,7 +15,7 @@ const MainPage = () => {
   console.log("tasksMain", tasksMain);
   return (
     <div
-      className="flex flex-wrap items-start justify-center gap-4 p-2 px-4"
+      className="flex flex-wrap items-start justify-center gap-4 p-2 px-4 mb-[90px]"
       ref={animationMother}
     >
       {data?.map((tasks) => (

@@ -8,6 +8,7 @@ import { taskType, usePersistStore } from "../../lib/zustand";
 import { IoSettingsSharp } from "react-icons/io5";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
 import AddSetting from "./AddSetting";
+import { FaPlus } from "react-icons/fa6";
 
 type AddModalTypes = {
   setOpenAddTask: React.Dispatch<React.SetStateAction<boolean>>;
@@ -84,26 +85,26 @@ const AddTaskForm = ({ setOpenAddTask }: AddModalTypes) => {
       //   onClick={() => setOpenAddTask(false)}
     >
       <div
-        className={` relative max-w-[400px]  shadow-2xl w-[90%]  bg-gray-200 text-black z-40 p-4 rounded-lg`}
+        className={` relative  shadow-lg  min-w-[300px] md:w-[450px]  sm:w-[90%] bg-slate-200 text-black z-40 p-4 rounded-lg`}
         onClick={(e) => e.stopPropagation()}
       >
         <div className="flex flex-col gap-2 shadow">
           <div
-            className={`flex flex-col gap-2 justify-center bg-gray-50 shadow-md p-2 font-semibold rounded-lg ${fontStyle}`}
+            className={`flex flex-col gap-2 justify-center bg-white p-2 font-semibold rounded-lg ${fontStyle}`}
           >
             <form onSubmit={handleSubmitCategory}>
               {editCat ? (
                 <input
                   type="text"
                   placeholder="Task category"
-                  className="shadow rounded-lg p-2 px-4 w-full text-lg"
+                  className="shadow rounded-lg p-2 px-4 w-full text-base"
                   value={category}
                   onChange={(e) => setCategory(e.target.value)}
                   required
                 />
               ) : (
                 <label
-                  className={` ${theme} px-4 py-2 rounded  text-lg text-gray-100 flex justify-between items-center`}
+                  className={` ${theme} px-4 py-2 rounded  text-base text-gray-100 flex justify-between items-center`}
                 >
                   {category}
                   <button
@@ -116,7 +117,7 @@ const AddTaskForm = ({ setOpenAddTask }: AddModalTypes) => {
               )}
             </form>
             <div
-              className="flex flex-col gap-2 font-normal text-lg"
+              className="flex flex-col gap-2 font-normal text-base"
               ref={animationParent}
             >
               {taskList.map((item, index) => (
@@ -143,21 +144,21 @@ const AddTaskForm = ({ setOpenAddTask }: AddModalTypes) => {
                 required
                 type="text"
                 placeholder="Add a task"
-                className="border rounded p-2 px-4 w-full text-lg"
+                className="border rounded p-1 px-4 w-full text-base"
                 autoFocus
                 value={taskTitle}
                 onChange={(e) => setTaskTitle(e.target.value)}
               />
               <button
-                className={`  ${theme} w-[40px] text-gray-100 text-lg p-1 rounded h-[40px]  `}
+                className={`  ${theme} w-[40px] text-gray-100 text-lg flex justify-center items-center p-1 rounded h-[33px]  `}
               >
-                +
+                <FaPlus />
               </button>
             </form>
           </div>
         </div>
         <div
-          className=" bg-zinc-100 mt-4 p-2 py-2 rounded-md flex flex-col gap-2 shadow-lg"
+          className=" bg-white mt-2 p-2 py-2 rounded-md flex flex-col gap-2 shadow-lg"
           ref={animationParent}
         >
           {/* <div
@@ -180,23 +181,24 @@ const AddTaskForm = ({ setOpenAddTask }: AddModalTypes) => {
           />
           {/* )} */}
         </div>
-
-        <div className=" flex gap-2 items-center mt-4  h-[40px]  ">
-          <button
-            onClick={handleCancel}
-            className=" w-1/2 bg-gray-100   p-1 rounded h-full shadow"
-          >
-            Cancel
-          </button>
-
-          <form className=" w-1/2  h-full" onSubmit={handleSubmitAll}>
+        <div className="bg-white  p-2 rounded mt-4">
+          <div className=" flex gap-2 items-center   ">
             <button
-              // onClick={() => setNumArr((prev) => [...prev, mainTaskTemplate])}
-              className={` w-full ${theme} text-gray-100  rounded p-1  h-full shadow`}
+              onClick={handleCancel}
+              className=" w-1/2 bg-gray-200  p-1  text-gray-700 py-2 font-semibold text-sm rounded flex items-center justify-center gap-2  hover:bg-opacity-50"
             >
-              Save
+              Cancel
             </button>
-          </form>
+
+            <form className=" w-1/2  h-full" onSubmit={handleSubmitAll}>
+              <button
+                // onClick={() => setNumArr((prev) => [...prev, mainTaskTemplate])}
+                className={` w-full ${theme} shadow text-gray-50 py-2 font-semibold text-sm rounded flex items-center justify-center gap-2  hover:bg-opacity-50`}
+              >
+                Save
+              </button>
+            </form>
+          </div>
         </div>
       </div>
     </div>

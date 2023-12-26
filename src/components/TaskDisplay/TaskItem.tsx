@@ -282,7 +282,7 @@ const TaskItem = ({
                     required
                     type="text"
                     placeholder="Add a subtask"
-                    className=" border-2 py-1 px-4 w-full text-base rounded"
+                    className=" border-2 py-1 px-4 w-full text-sm rounded"
                     value={subTaskTitle}
                     onFocus={onFocusSubtask}
                     onBlur={onBlurSubtask}

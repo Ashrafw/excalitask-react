@@ -42,7 +42,7 @@ const Navbar = ({
         {/* <div className={`  `}> */}
         <button
           onClick={() => {
-            if (tasksMain.length > 2) {
+            if (tasksMain.length > 9) {
               setShowAlert(true);
             } else {
               setOpenAddTask((prev) => !prev);

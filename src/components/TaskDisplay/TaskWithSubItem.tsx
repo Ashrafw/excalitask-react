@@ -157,7 +157,7 @@ const TaskWithSubItem = ({
   return (
     <div className=" rounded border -mt-[2px] bg-slate-50 w-full ">
       <button
-        className={`flex gap-2 ${theme} items- py-[2px]  px-2 justify-between border-b w-full  hover:bg-opacity-10  ${
+        className={`flex gap-2 ${theme} items-center py-[2px]  px-2 justify-between border-b w-full  hover:bg-opacity-10  ${
           !isDropDown ? "bg-opacity-10" : " bg-opacity-10"
         }`}
         disabled={isFinishEdit && isThisTheEditedTask}
@@ -181,9 +181,9 @@ const TaskWithSubItem = ({
             />
           </div>
         ) : (
-          <div className={`flex w-full  cursor-pointer text-start`}>
+          <div className={`flex w-full items-center cursor-pointer text-start`}>
             {/* <input type="checkbox" className=" m-2 my-[9px]" /> */}
-            <div className=" h-[2px] w-[56px] cursor-pointer"></div>
+            <div className=" h-[2px] w-[48px] cursor-pointer"></div>
             <label className="w-full text-base text-gray-900  cursor-pointer ">
               {`${
                 prefix === "numbers"

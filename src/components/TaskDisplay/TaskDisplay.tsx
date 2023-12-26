@@ -101,7 +101,7 @@ const TaskDisplay = ({
             className={`rounded-tl rounded-tr border-slate-800 p-2 ${task.theme} text-gray-200 flex justify-between items-center gap-4`}
           >
             <div className=" grid  grid-flow-col items-center gap-1">
-              <div className="relative w-[32px] h-[32px] bg-slate-300 bg-opacity-25 rounded-full">
+              <div className="relative w-[34px] h-[34px] bg-slate-300 bg-opacity-25 rounded-full">
                 <CircularProgress
                   variant="determinate"
                   thickness={6}
@@ -114,7 +114,7 @@ const TaskDisplay = ({
                   }}
                 />
                 <div
-                  className={` absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[24px] h-[24px] ${task.theme} rounded-full text-[8px]  font-semibold flex justify-center items-center`}
+                  className={` absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[26px] h-[26px] ${task.theme} rounded-full text-[10px]  font-bold flex justify-center items-center`}
                 >
                   68%
                 </div>
@@ -210,7 +210,7 @@ const TaskDisplay = ({
               </button>
               <button
                 onClick={handleFinishEdit}
-                className={` ${task.theme} min-w-[120px] shadow text-gray-50 py-1   text-sm rounded flex items-center justify-center gap-2  hover:bg-opacity-50 `}
+                className={` ${task.theme} min-w-[120px] shadow text-gray-50 py-1 text-sm rounded flex items-center justify-center gap-2  hover:bg-opacity-50 `}
               >
                 Save changes
               </button>

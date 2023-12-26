@@ -63,7 +63,7 @@ export const AddSettingSingle = ({
       </div>
       <div className="mt-2 text-sm">
         {/* <h2 className=" text pb-2 font-semibold">Font Style</h2> */}
-        <div className=" grid grid-cols-3 gap-y-2 gap-x-2 text-xs items-center">
+        <div className=" grid grid-cols-3 gap-y-2 gap-x-2 text-sm items-center">
           <button
             onClick={() => setEditFontStyle("font-poppins")}
             className={`w- font-poppins ${
