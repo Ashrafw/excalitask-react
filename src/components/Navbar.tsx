@@ -48,7 +48,7 @@ const Navbar = ({
             }
           }}
           className={`
-          relative w-[45px] h-[45px] flex justify-center shadow-lg items-center font- rounded bg-white  hover:bg-slate-100 text-2xl`}
+          relative w-[45px] h-[45px] flex justify-center shadow items-center font- rounded bg-white  hover:bg-slate-100 text-2xl`}
         >
           <FaPlus />
           {showAlert && (

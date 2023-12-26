@@ -92,7 +92,13 @@ const TaskDisplay = ({
     console.log("a", a);
     // calculation
     const completion = a.reduce((acc, item) => item + acc, 0) + numCompleteTaskWithNoSub;
-    return Math.round((completion / totalTasks) * 100);
+    const percentage = Math.round((completion / totalTasks) * 100);
+    console.log("typeof percentage", typeof percentage);
+    if (percentage > -1) {
+      return Math.round((completion / totalTasks) * 100);
+    } else {
+      return 0;
+    }
   };
 
   if (task) {
