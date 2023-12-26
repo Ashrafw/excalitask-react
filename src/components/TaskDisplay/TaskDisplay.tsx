@@ -124,7 +124,7 @@ const TaskDisplay = ({
             className={`rounded-tl rounded-tr border-slate-800 p-2 ${task.theme} text-gray-200 flex justify-between items-center gap-4`}
           >
             <div className=" grid  grid-flow-col items-center gap-1">
-              <div className="relative w-[34px] h-[34px] bg-slate-300 bg-opacity-25 rounded-full">
+              <div className="relative w-[34px] h-[34px] bg-slate-50 bg-opacity-20 rounded-full">
                 <CircularProgress
                   variant="determinate"
                   thickness={6}
@@ -132,7 +132,7 @@ const TaskDisplay = ({
                   style={{
                     width: "100%",
                     height: "100%",
-                    color: "rgba(255, 255, 255, 0.)",
+                    color: "rgba(255, 255, 255, 0.65)",
                     borderRadius: "10px",
                   }}
                 />
