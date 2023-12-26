@@ -3,6 +3,8 @@ import AddTaskForm from "./AddTaskForm/AddTaskForm";
 import { usePersistStore } from "../lib/zustand";
 import { FaPlus } from "react-icons/fa6";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
+import { IoInvertMode } from "react-icons/io5";
+import MainMenu from "./Menu/MainMenu";
 
 const Navbar = ({
   openAddTask,
@@ -26,17 +28,16 @@ const Navbar = ({
   return (
     <div>
       <div
-        className={`flex w-[95%] m-auto items-center justify-center my-4   ${
+        className={`flex w-[95%] items-center justify-between my-4   ${
           openAddTask ? "blur" : ""
         }`}
         ref={animationAlert}
       >
-        {/* <MainMenu /> */}
-
         {/* <div className={`  `}> */}
+        <div className="w-[15%]"></div>
         <button
           onClick={() => {
-            if (tasksMain.length > 3) {
+            if (tasksMain.length > 2) {
               setShowAlert(true);
             } else {
               setOpenAddTask((prev) => !prev);
@@ -49,14 +50,17 @@ const Navbar = ({
           {showAlert && (
             <div className=" z-50 absolute top-full --translate-x-[10px] w-[300px] shadow-md border-4 overflow-hidden bg-white border-slate-600 text-base rounded translate-y-[8px]">
               <div className=" rounded-lg  bg-white p-2">
-                You can only have 4 main tasks. More features coming soon.
+                You can only have 3 main tasks. More features coming soon.
               </div>
             </div>
           )}
         </button>
-        {/* <button className=" w-[50px] h-[50px] flex justify-center items-center rounded-lg hover:bg-slate-200">
-          <FaFont />
+        {/* <button className=" w-[50px] h-[50px] text-white flex justify-center items-center rounded-lg hover:bg-slate-200">
         </button> */}
+
+        <div className="w-[15%] flex justify-end items-center">
+          <MainMenu />
+        </div>
         {/* </div> */}
       </div>
 

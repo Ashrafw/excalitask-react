@@ -1,52 +1,65 @@
 import { useState } from "react";
-import { IoMenuOutline } from "react-icons/io5";
+// import { IoMenuOutline } from "react-icons/io5";
+import { IoInvertMode } from "react-icons/io5";
+import { usePersistStore } from "../../lib/zustand";
+// import ColorPicker from "react-pick-color";
 
 const MainMenu = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [color, setColor] = useState("bg-slate-700");
+  console.log("color", color);
+  console.log(" color === bg-red-800", color === "bg-red-800");
+  const { backgroundColour, setBackgroundColour } = usePersistStore();
+
   return (
     <div className="relative">
       <button
         onClick={() => setIsOpen((prev) => !prev)}
-        className={` p-2 flex justify-center items-center rounded bg-white  hover:bg-slate-100 text-2xl`}
+        className={` p-2 flex shadow-sm justify-center items-center rounded bg-white/30 text-black/70  hover:bg-slate-100 text-2xl`}
       >
-        <IoMenuOutline />
+        <IoInvertMode />
       </button>
       {isOpen ? (
-        <div className=" absolute bg-zinc-100 mt-2 p-2 rounded-md w-[260px] flex flex-col gap-4">
+        <div className=" absolute bg-white mt-2 p-2 rounded-md  flex flex-col gap-4 right-0 z-20 shadow-md">
           <div>
-            <h2 className=" text-lg pb-2">Theme</h2>
-            <div className=" flex gap-2 items-center">
-              <button className=" w-12 h-6 bg-slate-700 rounded ring-4 ring-slate-400"></button>
-              <button className=" w-12 h-6 bg-yellow-500 rounded"></button>
-              <button className=" w-12 h-6 bg-red-500 rounded"></button>
-              <button className=" w-12 h-6 bg-sky-500 rounded"></button>
-              <button className=" w-12 h-6 bg-pink-500 rounded"></button>
+            <h2 className=" text-sm pb-2 underline font-bold">Background</h2>
+            <div className=" flex flex-col gap-2 items-center">
+              <button
+                onClick={() => setBackgroundColour("bg-slate-50")}
+                className={` w-12 h-6 bg-slate-50 rounded shadow-md  ${
+                  backgroundColour === "bg-slate-50" ? " ring-[3px] ring-blue-400 " : ""
+                } `}
+              ></button>
+              <button
+                onClick={() => setBackgroundColour("bg-orange-50")}
+                className={` w-12 h-6 bg-orange-50 rounded shadow-md ${
+                  backgroundColour === "bg-orange-50" ? " ring-[3px] ring-blue-400" : ""
+                }`}
+              ></button>
+
+              <button
+                onClick={() => setBackgroundColour("bg-teal-900")}
+                className={` w-12 h-6  bg-teal-900 rounded shadow-md${
+                  backgroundColour === "bg-teal-900" ? " ring-[3px] ring-blue-400" : ""
+                }`}
+              ></button>
+              <button
+                onClick={() => setBackgroundColour("bg-slate-700")}
+                className={` w-12 h-6 bg-slate-700 rounded shadow-md ${
+                  backgroundColour === "bg-slate-700" ? " ring-[3px] ring-blue-400" : ""
+                }`}
+              ></button>
+              <button
+                onClick={() => setBackgroundColour("bg-gray-900")}
+                className={` w-12 h-6 bg-gray-900 rounded shadow-md ${
+                  backgroundColour === "bg-gray-900" ? " ring-[3px] ring-blue-400" : ""
+                }`}
+              ></button>
             </div>
+            {/* <div className="mt-6">
+              <ColorPicker color={color} onChange={(color) => setColor(color.hex)} />
+            </div> */}
           </div>
-          <div>
-            <h2 className=" text-lg pb-2">Font Style</h2>
-            <div className=" grid grid-cols-2 gap-y-2 gap-x-4 text-md items-center">
-              <button className="w- font-poppins border rounded shadow-sm p-1 px-2 bg-zinc-100 ring-2 ring-slate-400">
-                Excalitask
-              </button>
-              <button className="w- font-rokkitt border rounded shadow-sm p-1 px-2 bg-zinc-100">
-                Excalitask
-              </button>
-              <button className="w- font-architects border rounded shadow-sm p-1 px-2 bg-zinc-100 text-lg">
-                Excalitask
-              </button>
-              <button className="w- font-swanky border rounded shadow-sm p-1 px-2 bg-zinc-100  text-xl">
-                Excalitask
-              </button>
-              {/* <button className=" w- font-shadows border rounded shadow-sm p-1 px-2 bg-zinc-100  text-lg">
-                Excalitask
-              </button> */}
-              {/* <button className="w- font-gluten border rounded shadow-sm p-1 px-2 bg-zinc-100">
-                Excalitask
-              </button> */}
-            </div>
-          </div>
-          <div></div>
         </div>
       ) : null}
     </div>

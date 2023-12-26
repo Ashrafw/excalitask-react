@@ -100,7 +100,7 @@ const TaskDisplay = ({
   if (task) {
     return (
       <div
-        className={` relative shadow-xl rounded  bg-gray-50  min-w-[310px] ${task.fontStyle}`}
+        className={` relative shadow-xl rounded-lg overflow-hidden bg-gray-50  min-w-[310px] ${task.fontStyle}`}
       >
         {isFinishEdit && isThisTheEditedTask ? (
           <div

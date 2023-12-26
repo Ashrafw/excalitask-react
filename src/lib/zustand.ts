@@ -25,8 +25,8 @@ export type MainTaskType = {
   prefix: string;
 };
 interface StateStore {
-  isDarkMode: boolean;
-  setIsDarkMode: (isDarkMode: boolean) => void;
+  backgroundColour: string;
+  setBackgroundColour: (backgroundColour: string) => void;
   //
 
   tasksMain: MainTaskType[];
@@ -35,8 +35,8 @@ interface StateStore {
 export const usePersistStore = create<StateStore>()(
   persist(
     (set) => ({
-      isDarkMode: false,
-      setIsDarkMode: (isDarkMode: boolean) => set({ isDarkMode }),
+      backgroundColour: "bg-slate-100",
+      setBackgroundColour: (backgroundColour: string) => set({ backgroundColour }),
 
       //
       tasksMain: [],
