@@ -175,7 +175,7 @@ const TaskWithSubItem = ({
             </button>
             <input
               type="text"
-              className=" w-full rounded border px-2 text-lg  "
+              className=" w-full rounded border px-2 text-base  "
               value={titleEdit}
               onChange={(e) => setTitleEdit(e.target.value)}
             />
@@ -184,7 +184,7 @@ const TaskWithSubItem = ({
           <div className={`flex w-full  cursor-pointer text-start`}>
             {/* <input type="checkbox" className=" m-2 my-[9px]" /> */}
             <div className=" h-[2px] w-[56px] cursor-pointer"></div>
-            <label className="w-full text-lg text-gray-900  cursor-pointer ">
+            <label className="w-full text-base text-gray-900  cursor-pointer ">
               {`${
                 prefix === "numbers"
                   ? `${index + 1}. `
@@ -206,7 +206,7 @@ const TaskWithSubItem = ({
           {isDropDown ? <IoIosArrowUp /> : <IoIosArrowDown />}
         </div>
       </button>
-      <div className="flex flex-col ml-8 p-0  border-l text-base " ref={animationChild}>
+      <div className="flex flex-col ml-8 p-0  border-l text-sm " ref={animationChild}>
         {isDropDown
           ? task.subTaskList?.map((item, i) => (
               <SubItem
@@ -233,7 +233,7 @@ const TaskWithSubItem = ({
                 required
                 type="text"
                 placeholder="Add a subtask"
-                className=" border py-1 px-4 w-full text-base rounded bg-white"
+                className=" border py-1 px-4 w-full text-sm rounded bg-white"
                 value={subTaskTitle}
                 onFocus={onFocusSubtask}
                 onBlur={onBlurSubtask}
@@ -241,7 +241,7 @@ const TaskWithSubItem = ({
                 onChange={(e) => setSubTaskTitle(e.target.value)}
               />
               <button
-                className={`w-[40px] ${theme} text-gray-100 flex justify-center items-center text-sm p-1 rounded h-[32px]  `}
+                className={`w-[40px] ${theme} text-gray-100 flex justify-center items-center text-sm p-1 rounded h-[28px]  `}
               >
                 <FaPlus />
               </button>

@@ -145,8 +145,8 @@ const AddSingleTask = ({
     setTaskTitle("");
   };
   return (
-    <div className={`bg-white  rounded-lg flex flex-col gap-2`}>
-      <div className="flex flex-col gap-2 bg-white p-2 rounded">
+    <div className={`  rounded-lg flex flex-col gap-2`}>
+      <div className="flex flex-col gap-2  rounded">
         {taskList.length > 0 && (
           <div className="flex flex-col gap-2">
             {taskList.map((item, index) => (
@@ -161,7 +161,10 @@ const AddSingleTask = ({
             ))}
           </div>
         )}
-        <form className=" mt-2 flex items-center gap-1 " onSubmit={handleSubmitNewTask}>
+        <form
+          className=" flex items-center gap-1 border p-2 bg-white rounded shadow "
+          onSubmit={handleSubmitNewTask}
+        >
           <input
             //   ref={searchInput}
             onFocus={() => setFocused(true)}
@@ -170,34 +173,34 @@ const AddSingleTask = ({
             type="text"
             placeholder="Add a new task"
             // className="shadow rounded-full p-1  px-4 w-full"
-            className="border rounded p-1 px-4 w-full"
+            className="border rounded p-1 px-4 w-full text-sm"
             autoFocus={focused}
             value={taskTitle}
             onChange={(e) => setTaskTitle(e.target.value)}
           />
           <button
-            className={` ${theme} w-[40px] text-gray-100 text-lg flex justify-center items-center rounded h-[34px]  `}
+            className={` ${theme} w-[40px] text-gray-100 text-lg flex justify-center items-center rounded h-[29px]  `}
           >
             <FiPlus />
           </button>
         </form>
       </div>
       <div
-        className="flex flex-col gap-2 shadow  rounded border-2 mx-2 mb-2"
+        className="flex flex-col gap-2 shadow rounded p-1 bg-white mmb-2 w-full"
         ref={animationNew}
       >
         <div
-          className=" flex justify-between items-center gap-1 cursor-pointer p-1  rounded bg-gray-100 "
+          className=" flex justify-between items-center cursor-pointer p-1 rounded bg-white"
           onClick={() => setIsEditSettings((prev) => !prev)}
         >
-          <h1 className=" pl-1">Customize settings</h1>
-          <div className={` p-1 $bg-black/10 rounded`}>
+          <h1 className=" pl-1 text-xs font-medium text-gray-800">Customize settings</h1>
+          <div className={` flex items-center justify-center p-1 bg-black/10 rounded`}>
             {isEditSettings ? (
-              <button className={` p-1 bg-white/70 rounded`}>
+              <button className={`  `}>
                 <IoIosArrowUp />
               </button>
             ) : (
-              <button className={` p-1 bg-white/70 rounded`}>
+              <button className={` `}>
                 <IoMdSettings />
               </button>
             )}

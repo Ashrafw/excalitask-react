@@ -165,7 +165,7 @@ const SubItem = ({
           </button>
           <input
             type="text"
-            className=" w-full rounded px-2 py-[2px] border text-base  "
+            className=" w-full rounded px-2 py-[2px] border text-sm  "
             value={titleSubEdit}
             onChange={(e) => setTitleSubEdit(e.target.value)}
           />
@@ -173,7 +173,7 @@ const SubItem = ({
       ) : (
         <>
           <div className="flex gap-2 items-center w-full cursor-pointer ">
-            <div className="flex items-center justify-center w-[30px] h-[30px] mr-[10px] ">
+            <div className="flex items-center justify-center w-[30px] h-[30px] mr-[8px] ">
               <input
                 type="checkbox"
                 className={` h-[14px] w-[14px] mt-1 ml-1 p-0 m-0 ${handleAccent()}  border-4`}
@@ -182,7 +182,7 @@ const SubItem = ({
               />
             </div>
             <label
-              className={`w-full cursor-pointer text-medium text text-gray-00 py-[2px] text-base  ${
+              className={`w-full cursor-pointer text-medium text text-gray-00 py-[2px] text-sm  ${
                 subTask.isComplete ? " decoration-slate-800 text-gray-900/25" : " "
               } `}
             >

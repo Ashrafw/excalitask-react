@@ -242,7 +242,7 @@ const TaskItem = ({
             </button>
             <input
               type="text"
-              className=" w-[100%] rounded px-2 border text-lg"
+              className=" w-[100%] rounded px-2 border text-base"
               value={titleEdit}
               onChange={(e) => setTitleEdit(e.target.value)}
             />
@@ -272,7 +272,7 @@ const TaskItem = ({
                 >
                   <FaRegTrashAlt />
                 </button>
-                <h2 className=" ">{item.title}</h2>
+                <h2 className=" text-base">{item.title}</h2>
               </div>
             ))}
             {openSubtask && (
@@ -311,7 +311,7 @@ const TaskItem = ({
             />
           </div>
           <label
-            className={`w-full  text-lg cursor-pointer  text-gray-900  ${
+            className={`w-full  text-base cursor-pointer  text-gray-900  ${
               task.isComplete
                 ? "  decoration-[2px] decoration-slate-800/25 text-gray-900/25"
                 : " "

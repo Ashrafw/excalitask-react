@@ -8,7 +8,8 @@ import { IoMdReturnLeft } from "react-icons/io";
 import AddSingleTask from "../AddSingleTask/AddSingleTask";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
 import { FaPlus } from "react-icons/fa6";
-
+import { CircularProgress } from "@mui/material";
+// import { CircularProgressbar } from 'react-circular-progressbar';
 type TaskDisplayType = {
   task: MainTaskType;
   editTaskId: string;
@@ -76,7 +77,7 @@ const TaskDisplay = ({
   if (task) {
     return (
       <div
-        className={` relative shadow-xl rounded  bg-gray-50  min-w-[340px] ${task.fontStyle}`}
+        className={` relative shadow-xl rounded  bg-gray-50  min-w-[310px] ${task.fontStyle}`}
       >
         {isFinishEdit && isThisTheEditedTask ? (
           <div
@@ -84,13 +85,13 @@ const TaskDisplay = ({
           >
             <input
               type="text"
-              className=" w-full rounded p-1 px-2 font-semibold text-lg"
+              className=" w-full rounded p-1 px-2 font-semibold text-base"
               value={categoryEdit}
               onChange={(e) => setCategoryEdit(e.target.value)}
             />
             <button
               onClick={() => setIsFinishEdit(false)}
-              className=" bg-white bg-opacity-20  text-slate-100 text-2xl rounded p-1"
+              className=" bg-white bg-opacity-20  text-slate-100 rounded p-1"
             >
               <IoMdReturnLeft />
             </button>
@@ -99,7 +100,27 @@ const TaskDisplay = ({
           <div
             className={`rounded-tl rounded-tr border-slate-800 p-2 ${task.theme} text-gray-200 flex justify-between items-center gap-4`}
           >
-            <h1 className="w-full  font-semibold text-lg  p-1 px-2 ">{task.title}</h1>
+            <div className=" grid  grid-flow-col items-center gap-1">
+              <div className="relative w-[32px] h-[32px] bg-slate-300 bg-opacity-25 rounded-full">
+                <CircularProgress
+                  variant="determinate"
+                  thickness={6}
+                  value={68}
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    color: "rgba(255, 255, 255, 0.389)",
+                    borderRadius: "10px",
+                  }}
+                />
+                <div
+                  className={` absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[24px] h-[24px] ${task.theme} rounded-full text-[8px]  font-semibold flex justify-center items-center`}
+                >
+                  68%
+                </div>
+              </div>
+              <h1 className="w-full font-semibold text-base  p-1 px-1 ">{task.title}</h1>
+            </div>
             <button
               onClick={() => {
                 setEditTaskId(task.id);
@@ -113,7 +134,7 @@ const TaskDisplay = ({
         )}
 
         <div
-          className="flex flex-col text-[16px] gap-[4px] p-2 py-2"
+          className="flex flex-col text-[16px]  py-2 px-1"
           // ref={animationParent}
         >
           {task.taskList?.map((item, i) => {
@@ -174,7 +195,7 @@ const TaskDisplay = ({
               focused={focused}
               setFocused={setFocused}
             />
-            <div className=" grid grid-cols-2 items-center px-4 py-2 rounded gap-4 w-full justify-center bg-gray-50 text-gray-50 cursor-pointer text-lg">
+            <div className=" grid grid-cols-2 items-center px-4 py-2 rounded gap-4 w-full justify-center bg-white text-gray-50 cursor-pointer text-sm">
               <button
                 onMouseEnter={() => setIsShown(true)}
                 onMouseLeave={() => setIsShown(false)}
@@ -182,14 +203,14 @@ const TaskDisplay = ({
                   handleDeleteAll(task.id);
                   setIsFinishEdit(true);
                 }}
-                className={` bg-gray-300 min-w-[120px] shadow text-gray-900 py-1 px-4  text-base rounded flex items-center justify-center gap-2 hover:bg-opacity-70 `}
+                className={` bg-gray-200 min-w-[120px] shadow text-gray-900 py-1   text-sm rounded flex items-center justify-center gap-2 hover:bg-gray-300 `}
               >
                 <FaRegTrashAlt />
                 <p>Delete all</p>
               </button>
               <button
                 onClick={handleFinishEdit}
-                className={` ${task.theme} min-w-[120px] shadow text-gray-50 py-1 px-4  text-base rounded flex items-center justify-center gap-2  hover:bg-opacity-50 `}
+                className={` ${task.theme} min-w-[120px] shadow text-gray-50 py-1   text-sm rounded flex items-center justify-center gap-2  hover:bg-opacity-50 `}
               >
                 Save changes
               </button>
@@ -205,7 +226,7 @@ const TaskDisplay = ({
                 // setAddSingleTask(true)}
                 setFocused(true);
               }}
-              className=" -mt-1 text-base flex gap-2 items-center text-gray-600 px-4 py-4 hover:bg-slate-400 hover:bg-opacity-10 cursor-pointer item-center justify-center w-full"
+              className=" -mt-1 text-base flex gap-2 items-center text-gray-600 px-4 pt-[10px] pb-[12px] hover:bg-slate-400 hover:bg-opacity-10 cursor-pointer item-center justify-center w-full"
             >
               <FaPlus />
             </div>

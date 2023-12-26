@@ -17,55 +17,53 @@ export const AddSettingSingle = ({
 }: AddSettingSingleType) => {
   console.log("fontStyle", fontStyle);
   return (
-    <div className="max-w-[340px] mt-2 py-2 px-2 rounded ">
+    <div className="  pt-1 pb-2 px-2 rounded ">
       <div className="   border-b  pb-2">
-        {/* <h2 className=" text pb-2 pt-1 font-semibold">Theme</h2> */}
-        <div className=" flex gap-2 items-center justify-between">
-          <h1>Theme: </h1>
+        <div className="  gap-2 items-center  text-xs">
           <div className=" grid grid-cols-6 gap-1">
             <button
               onClick={() => setEditTheme("bg-slate-700")}
-              className={` w-10 h-6 bg-slate-700 rounded border ${
+              className={` w-full h-6 bg-slate-700 rounded border ${
                 theme === "bg-slate-700" ? " ring-2 ring-blue-500" : ""
               }`}
-              // " w-10 h-6 bg-slate-700 rounded ring-4 ring-blue-500"
+              // " w-full h-6 bg-slate-700 rounded ring-4 ring-blue-500"
             ></button>
             <button
               onClick={() => setEditTheme("bg-neutral-900")}
-              className={` w-10 h-6 bg-neutral-900 rounded border ${
+              className={` w-full h-6 bg-neutral-900 rounded border ${
                 theme === "bg-neutral-900" ? " ring-2 ring-blue-500" : ""
               }`}
             ></button>
             <button
               onClick={() => setEditTheme("bg-cyan-800")}
-              className={` w-10 h-6 bg-cyan-800 rounded border ${
+              className={` w-full h-6 bg-cyan-800 rounded border ${
                 theme === "bg-cyan-800" ? " ring-2 ring-blue-500" : ""
               }`}
             ></button>
             <button
               onClick={() => setEditTheme("bg-emerald-700")}
-              className={` w-10 h-6 bg-emerald-700 rounded border ${
-                theme === "bbg-emerald-700" ? " ring-2 ring-blue-500" : ""
+              className={` w-full h-6 bg-emerald-700 rounded border ${
+                theme === "bg-emerald-700" ? " ring-2 ring-blue-500" : ""
               }`}
             ></button>
             <button
               onClick={() => setEditTheme("bg-rose-900")}
-              className={` w-10 h-6 bg-rose-900 rounded border ${
+              className={` w-full h-6 bg-rose-900 rounded border ${
                 theme === "bg-rose-900" ? " ring-2 ring-blue-500" : ""
               }`}
             ></button>
             <button
               onClick={() => setEditTheme("bg-pink-700")}
-              className={` w-10 h-6 bg-pink-700 rounded border ${
+              className={` w-full h-6 bg-pink-700 rounded border ${
                 theme === "bg-pink-700" ? " ring-2 ring-blue-500" : ""
               }`}
             ></button>
           </div>
         </div>
       </div>
-      <div className="mt-2">
+      <div className="mt-2 text-sm">
         {/* <h2 className=" text pb-2 font-semibold">Font Style</h2> */}
-        <div className=" grid grid-cols-3 gap-y-2 gap-x-2 text-sm items-center">
+        <div className=" grid grid-cols-3 gap-y-2 gap-x-2 text-xs items-center">
           <button
             onClick={() => setEditFontStyle("font-poppins")}
             className={`w- font-poppins ${
@@ -174,10 +172,10 @@ export const AddSettingSingle = ({
       </div>
       <div className="mt-2  border-t">
         {/* <h2 className=" text pb-2 font-semibold">Font Style</h2> */}
-        <div className=" grid grid-cols-3 gap-y-2 gap-x-2 text-sm mt-2 items-center">
+        <div className=" grid grid-cols-3 gap-y-2 gap-x-2 text-xs mt-2 items-center">
           <button
             onClick={() => setEditPrefix("none")}
-            className={` border rounded shadow-sm p-1 px-2 bg-zinc-100  ${
+            className={` border rounded shadow-sm p-1  bg-zinc-100  ${
               prefix === "none" ? " ring-2 ring-blue-500" : ""
             }`}
           >
