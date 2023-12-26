@@ -73,6 +73,28 @@ const TaskDisplay = ({
     const newTaskAfterDelete = tasksMain.filter((item) => item.id !== id);
     setTaskMain(newTaskAfterDelete);
   };
+  const checkCompletionPercentage = () => {
+    const theTasks = task.taskList;
+    const totalTasks = theTasks.length;
+    const numCompleteTaskWithNoSub = theTasks.filter(
+      (item) => item.isComplete && !item.isSubtask
+    ).length;
+
+    const theSubtasks = theTasks.filter((item) => item.isSubtask);
+    let a: number[] = [];
+    for (let i = 0; i < theSubtasks.length; i++) {
+      a = [
+        ...a,
+
+        theSubtasks[i].subTaskList.filter((item) => item.isComplete).length /
+          theSubtasks[i].subTaskList.length,
+      ];
+    }
+    console.log("a", a);
+    // calculation
+    const completion = a.reduce((acc, item) => item + acc, 0) + numCompleteTaskWithNoSub;
+    return Math.round((completion / totalTasks) * 100);
+  };
 
   if (task) {
     return (
@@ -105,18 +127,19 @@ const TaskDisplay = ({
                 <CircularProgress
                   variant="determinate"
                   thickness={6}
-                  value={68}
+                  value={checkCompletionPercentage()}
                   style={{
                     width: "100%",
                     height: "100%",
-                    color: "rgba(255, 255, 255, 0.389)",
+                    color: "rgba(255, 255, 255, 0.6)",
                     borderRadius: "10px",
                   }}
                 />
                 <div
-                  className={` absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[26px] h-[26px] ${task.theme} rounded-full text-[10px]  font-bold flex justify-center items-center`}
+                  className={` absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[28px] h-[28px] ${task.theme} rounded-full text-[10px] font-extrabold flex justify-center items-center`}
                 >
-                  68%
+                  {checkCompletionPercentage()}
+                  <span className=" font-semibold">%</span>
                 </div>
               </div>
               <h1 className="w-full font-semibold text-base  p-1 px-1 ">{task.title}</h1>

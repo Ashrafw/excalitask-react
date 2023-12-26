@@ -17,11 +17,11 @@ function App() {
         </div>
       </div>
       <div
-        className={` w-[100%]   flex items-center  ${"bg-[#131e2611] text-[rgb(255, 255, 255)]"}`}
+        className={` w-[100%]   flex items-center  ${"bg-[#00000008] text-[rgb(255, 255, 255)]"}`}
       >
         <a
           href="https://www.ashrafmedia.com"
-          className={` text-center m-auto p-[6px] px-6 rounded-md font-semibold max-sm:text-md  max-sm:text-sm  max-sm:p-1  max-sm:px-4   hover:bg-opacity-10  ${" hover:bg-black  hover:bg-opacity-5"}`}
+          className={` text-center m-auto p-[6px] px-6 rounded-md font-normal max-sm:text-md  max-sm:text-sm  max-sm:p-1  max-sm:px-4   hover:bg-opacity-10  ${" hover:bg-black  hover:bg-opacity-5"}`}
         >
           Created by @ashrafmedia
         </a>
