@@ -78,7 +78,7 @@ const AddTaskForm = ({ setOpenAddTask }: AddModalTypes) => {
   };
   return (
     <div
-      className={`absolute w-screen h-screen z-40 top-0 left-0 flex justify-center items-start pt-16 blur-none`}
+      className={`absolute w-full h-screen z-40 top-0 left-0 flex justify-center items-start pt-16 blur-none`}
       //   onClick={() => setOpenAddTask(false)}
     >
       <div

@@ -3,7 +3,6 @@ import AddTaskForm from "./AddTaskForm/AddTaskForm";
 import { usePersistStore } from "../lib/zustand";
 import { FaPlus } from "react-icons/fa6";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
-import { IoInvertMode } from "react-icons/io5";
 import MainMenu from "./Menu/MainMenu";
 
 const Navbar = ({

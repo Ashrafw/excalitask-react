@@ -25,6 +25,9 @@ export type MainTaskType = {
   prefix: string;
 };
 interface StateStore {
+  zoomNum: string;
+  setZoomNum: (zoomNum: string) => void;
+
   backgroundColour: string;
   setBackgroundColour: (backgroundColour: string) => void;
   //
@@ -35,9 +38,11 @@ interface StateStore {
 export const usePersistStore = create<StateStore>()(
   persist(
     (set) => ({
+      zoomNum: "zoom100",
+      setZoomNum: (zoomNum: string) => set({ zoomNum }),
+
       backgroundColour: "bg-slate-100",
       setBackgroundColour: (backgroundColour: string) => set({ backgroundColour }),
-
       //
       tasksMain: [],
       setTaskMain: (tasksMain: MainTaskType[]) => set({ tasksMain }),

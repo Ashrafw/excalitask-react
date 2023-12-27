@@ -213,7 +213,9 @@ const TaskWithSubItem = ({
           className={` flex justify-center items-center cursor-pointer p-2 rounded ${
             isFinishEdit && isThisTheEditedTask ? "" : ""
           }`}
-          onClick={() => setIsDropDown((prev) => !prev)}
+          onClick={() => {
+            isFinishEdit && isThisTheEditedTask ? setIsDropDown((prev) => !prev) : null;
+          }}
         >
           {isDropDown ? <IoIosArrowUp /> : <IoIosArrowDown />}
         </div>

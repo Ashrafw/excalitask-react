@@ -36,7 +36,7 @@ const TaskDisplay = ({
 
   const handleCategoryChange = () => {
     const newTask = tasksMain.map((taskInner) => {
-      if (taskInner.id === editTaskId) {
+      if (taskInner.id === task.id) {
         // Update the tasklist for the specific object
         return { ...taskInner, title: categoryEdit };
       } else {
@@ -49,19 +49,21 @@ const TaskDisplay = ({
   useEffect(() => {
     setTimeout(() => {
       const newTask = tasksMain.map((taskInner) => {
-        if (taskInner.id === editTaskId) {
+        if (taskInner.id === task.id) {
           // Update the tasklist for the specific object
           return { ...taskInner, title: categoryEdit };
         } else {
           return taskInner;
         }
       });
+      ("");
       setTaskMain(newTask);
     }, 600);
   }, [categoryEdit]);
   const handleFinishEdit = () => {
     if (categoryEdit !== task.title) handleCategoryChange();
     setIsFinishEdit(false);
+    // setCategoryEdit("");
   };
 
   const handleDeleteAll = (id: string) => {
@@ -100,7 +102,7 @@ const TaskDisplay = ({
   if (task) {
     return (
       <div
-        className={` relative shadow-xl rounded-lg overflow-hidden bg-gray-50  min-w-[310px] ${task.fontStyle}`}
+        className={`  relative shadow-xl rounded-lg overflow-hidden ${task.theme} max-w-[400px] min-w-[310px]  w-[95%] ${task.fontStyle}`}
       >
         {isFinishEdit && isThisTheEditedTask ? (
           <div
@@ -156,105 +158,106 @@ const TaskDisplay = ({
             </button>
           </div>
         )}
-
-        <div
-          className="flex flex-col text-[16px]  py-2 px-1"
-          // ref={animationParent}
-        >
-          {task.taskList?.map((item, i) => {
-            return item?.isSubtask ? (
-              <TaskWithSubItem
-                key={item.id}
-                task={item}
-                mainTaskId={task.id}
-                isEditMode={editTaskId === task.id}
-                editTaskId={editTaskId}
-                setEditTaskId={setEditTaskId}
-                isFinishEdit={isFinishEdit}
-                setIsFinishEdit={setIsFinishEdit}
-                isThisTheEditedTask={isThisTheEditedTask}
-                isLastItem={task.taskList.length === i + 1}
-                theme={task.theme}
-                index={i}
-                prefix={task.prefix}
-                withSubTask={item.isSubtask}
-                focusedSubtask={focusedSubtask}
-                setFocusedSubtask={setFocusedSubtask}
-                onFocusSubtask={onFocus}
-                onBlurSubtask={onBlur}
-              />
-            ) : (
-              <TaskItem
-                key={item.id}
-                task={item}
-                mainTaskId={task.id}
-                isEditMode={editTaskId === task.id}
-                editTaskId={editTaskId}
-                setEditTaskId={setEditTaskId}
-                isFinishEdit={isFinishEdit}
-                setIsFinishEdit={setIsFinishEdit}
-                isThisTheEditedTask={isThisTheEditedTask}
-                isLastItem={task.taskList.length === i + 1}
-                index={i}
-                prefix={task.prefix}
-                theme={task.theme}
-                focusedSubtask={focusedSubtask}
-                setFocusedSubtask={setFocusedSubtask}
-                onFocusSubtask={onFocus}
-                onBlurSubtask={onBlur}
-              />
-            );
-          })}
-        </div>
-
-        {isFinishEdit && isThisTheEditedTask ? (
+        <div className=" bg-gray-50">
           <div
-            className={` ${task.theme} bg-opacity-70 p-2  rounded-lg flex flex-col gap-2`}
+            className="flex flex-col text-[16px]  py-2 px-1"
+            // ref={animationParent}
           >
-            <AddSingleTask
-              taskId={task.id}
-              theme={task.theme}
-              task={task}
-              focused={focused}
-              setFocused={setFocused}
-            />
-            <div className=" grid grid-cols-2 items-center px-4 py-2 rounded gap-4 w-full justify-center bg-white text-gray-50 cursor-pointer text-sm">
-              <button
-                onMouseEnter={() => setIsShown(true)}
-                onMouseLeave={() => setIsShown(false)}
-                onClick={() => {
-                  handleDeleteAll(task.id);
-                  setIsFinishEdit(true);
-                }}
-                className={` bg-gray-200 min-w-[120px] shadow text-gray-900 py-1   text-sm rounded flex items-center justify-center gap-2 hover:bg-gray-300 `}
-              >
-                <FaRegTrashAlt />
-                <p>Delete all</p>
-              </button>
-              <button
-                onClick={handleFinishEdit}
-                className={` ${task.theme} min-w-[120px] shadow text-gray-50 py-1 text-sm rounded flex items-center justify-center gap-2  hover:bg-opacity-50 `}
-              >
-                Save changes
-              </button>
-            </div>
-            {/* <AddSingleTask taskId={task.id} setAddSingleTask={setAddSingleTask} /> */}
+            {task.taskList?.map((item, i) => {
+              return item?.isSubtask ? (
+                <TaskWithSubItem
+                  key={item.id}
+                  task={item}
+                  mainTaskId={task.id}
+                  isEditMode={editTaskId === task.id}
+                  editTaskId={editTaskId}
+                  setEditTaskId={setEditTaskId}
+                  isFinishEdit={isFinishEdit}
+                  setIsFinishEdit={setIsFinishEdit}
+                  isThisTheEditedTask={isThisTheEditedTask}
+                  isLastItem={task.taskList.length === i + 1}
+                  theme={task.theme}
+                  index={i}
+                  prefix={task.prefix}
+                  withSubTask={item.isSubtask}
+                  focusedSubtask={focusedSubtask}
+                  setFocusedSubtask={setFocusedSubtask}
+                  onFocusSubtask={onFocus}
+                  onBlurSubtask={onBlur}
+                />
+              ) : (
+                <TaskItem
+                  key={item.id}
+                  task={item}
+                  mainTaskId={task.id}
+                  isEditMode={editTaskId === task.id}
+                  editTaskId={editTaskId}
+                  setEditTaskId={setEditTaskId}
+                  isFinishEdit={isFinishEdit}
+                  setIsFinishEdit={setIsFinishEdit}
+                  isThisTheEditedTask={isThisTheEditedTask}
+                  isLastItem={task.taskList.length === i + 1}
+                  index={i}
+                  prefix={task.prefix}
+                  theme={task.theme}
+                  focusedSubtask={focusedSubtask}
+                  setFocusedSubtask={setFocusedSubtask}
+                  onFocusSubtask={onFocus}
+                  onBlurSubtask={onBlur}
+                />
+              );
+            })}
           </div>
-        ) : (
-          <>
+
+          {isFinishEdit && isThisTheEditedTask ? (
             <div
-              onClick={() => {
-                setEditTaskId(task.id);
-                setIsFinishEdit(true);
-                // setAddSingleTask(true)}
-                setFocused(true);
-              }}
-              className=" -mt-1 text-base flex gap-2 items-center text-gray-600 px-4 pt-[10px] pb-[12px] hover:bg-slate-400 hover:bg-opacity-10 cursor-pointer item-center justify-center w-full"
+              className={` ${task.theme} bg-opacity-70 p-2  rounded-lg flex flex-col gap-2`}
             >
-              <FaPlus />
+              <AddSingleTask
+                taskId={task.id}
+                theme={task.theme}
+                task={task}
+                focused={focused}
+                setFocused={setFocused}
+              />
+              <div className=" grid grid-cols-2 items-center px-4 py-2 rounded gap-4 w-full justify-center bg-white text-gray-50 cursor-pointer text-sm">
+                <button
+                  onMouseEnter={() => setIsShown(true)}
+                  onMouseLeave={() => setIsShown(false)}
+                  onClick={() => {
+                    handleDeleteAll(task.id);
+                    setIsFinishEdit(true);
+                  }}
+                  className={` bg-gray-200 min-w-[120px] shadow text-gray-900 py-1   text-sm rounded flex items-center justify-center gap-2 hover:bg-gray-300 `}
+                >
+                  <FaRegTrashAlt />
+                  <p>Delete all</p>
+                </button>
+                <button
+                  onClick={handleFinishEdit}
+                  className={` ${task.theme} min-w-[120px] shadow text-gray-50 py-1 text-sm rounded flex items-center justify-center gap-2  hover:bg-opacity-50 `}
+                >
+                  Save changes
+                </button>
+              </div>
+              {/* <AddSingleTask taskId={task.id} setAddSingleTask={setAddSingleTask} /> */}
             </div>
-          </>
-        )}
+          ) : (
+            <>
+              <div
+                onClick={() => {
+                  setEditTaskId(task.id);
+                  setIsFinishEdit(true);
+                  // setAddSingleTask(true)}
+                  setFocused(true);
+                }}
+                className=" -mt-1 text-base flex gap-2 items-center text-gray-600 px-4 pt-[10px] pb-[12px] hover:bg-slate-400 hover:bg-opacity-10 cursor-pointer item-center justify-center w-full"
+              >
+                <FaPlus />
+              </div>
+            </>
+          )}
+        </div>
       </div>
     );
   }
