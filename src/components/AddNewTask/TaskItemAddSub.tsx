@@ -67,7 +67,7 @@ const TaskItemAddSub = ({
           <button
             onClick={() => {
               // onFocusSubtask();
-              setOpenSubtask((prev) => !prev);
+              setOpenSubtask(true);
               //   setDropDown((prev) => !prev);
             }}
             // className="   text-gray-500 text-md p-1 px-2 rounded-md  bg-gray-200 shadow "

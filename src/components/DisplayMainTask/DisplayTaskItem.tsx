@@ -32,6 +32,11 @@ const DisplayTaskItem = ({
   const onBlur = () => setFocusedSubtask(false);
   const [animationChild] = useAutoAnimate();
 
+  useEffect(() => {
+    if (editModeId === "") {
+      setOpenSubtask(false);
+    }
+  }, [editModeId]);
   //   changing an existing task.title
   useEffect(() => {
     if (task.title !== titleEdit) {
@@ -201,7 +206,7 @@ const DisplayTaskItem = ({
               <button
                 onClick={() => {
                   onFocus();
-                  setOpenSubtask((prev) => !prev);
+                  setOpenSubtask(true);
                   setIsDropDown(true);
                 }}
                 className="h-full w-8 flex items-center justify-center cursor-pointer "
@@ -281,7 +286,8 @@ const DisplayTaskItem = ({
               </>
             ) : null}
 
-            {openSubtask || actualMainTask.id === editModeId ? (
+            {(openSubtask && actualMainTask.id === editModeId) ||
+            (task.subTaskList.length > 0 && actualMainTask.id === editModeId) ? (
               <form onSubmit={handleSubmitSubTask}>
                 <div
                   className={`flex gap-2 items-center h-[38px] px-2  hover:bg-slate-400 hover:bg-opacity-10 border-l ${

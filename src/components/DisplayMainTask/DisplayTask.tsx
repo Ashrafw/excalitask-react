@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FaRegTrashAlt } from "react-icons/fa";
 
 import { MainTaskType, usePersistStore } from "../../lib/zustand";
@@ -12,7 +12,6 @@ import { AddSettingSingle } from "../AddSingleTask/AddSettingSingle";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
 import { IoMdSettings } from "react-icons/io";
 import { IoIosArrowUp } from "react-icons/io";
-import { useOnClickOutside } from "../../hooks/use-on-click-outside";
 
 type DisplayTaskTypes = {
   actualMainTask: MainTaskType;
@@ -24,8 +23,6 @@ const DisplayTask = ({ actualMainTask, editModeId, setEditModeId }: DisplayTaskT
   const [isEditSettings, setIsEditSettings] = useState(false);
   const [animationSetting] = useAutoAnimate();
   const { tasksMain, setTaskMain } = usePersistStore();
-  const taskRef = useRef<HTMLDivElement | null>(null);
-  useOnClickOutside(taskRef, () => setEditModeId(""));
 
   useEffect(() => {
     if (actualMainTask.title !== categoryEdit) {
@@ -43,6 +40,7 @@ const DisplayTask = ({ actualMainTask, editModeId, setEditModeId }: DisplayTaskT
       }, 600);
     }
   }, [categoryEdit]);
+
   const handleDeleteAll = (id: string) => {
     const newTaskAfterDelete = tasksMain.filter((item) => item.id !== id);
     setTaskMain(newTaskAfterDelete);
@@ -50,7 +48,6 @@ const DisplayTask = ({ actualMainTask, editModeId, setEditModeId }: DisplayTaskT
   return (
     <div
       className={` relative shadow-xl rounded-lg overflow-hidden  max-w-[400px] min-w-[310px] w-[95%] ${actualMainTask.fontStyle} `}
-      ref={taskRef}
     >
       <div className="h-12 mb-2">
         {actualMainTask.id === editModeId ? (

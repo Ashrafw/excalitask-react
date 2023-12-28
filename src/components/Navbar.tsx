@@ -37,7 +37,7 @@ const Navbar = ({
         <div className="w-[60%] flex justify-center items-center">
           <button
             onClick={() => {
-              if (tasksMain.length > 12) {
+              if (tasksMain.length > 2) {
                 setShowAlert(true);
               } else {
                 setOpenAddTask((prev) => !prev);
