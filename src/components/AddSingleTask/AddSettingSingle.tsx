@@ -1,21 +1,72 @@
-import React from "react";
+import { useEffect, useState } from "react";
+import { usePersistStore } from "../../lib/zustand";
 type AddSettingSingleType = {
   theme: string;
   fontStyle: string;
   prefix: string;
-  setEditTheme: React.Dispatch<React.SetStateAction<string>>;
-  setEditFontStyle: React.Dispatch<React.SetStateAction<string>>;
-  setEditPrefix: React.Dispatch<React.SetStateAction<string>>;
+  taskId: string;
 };
 export const AddSettingSingle = ({
   theme,
   fontStyle,
   prefix,
-  setEditTheme,
-  setEditFontStyle,
-  setEditPrefix,
+  taskId,
 }: AddSettingSingleType) => {
-  console.log("fontStyle", fontStyle);
+  const [editTheme, setEditTheme] = useState(theme);
+  const [editFontStyle, setEditFontStyle] = useState(fontStyle);
+  const [editPrefix, setEditPrefix] = useState(prefix);
+  const { tasksMain, setTaskMain } = usePersistStore();
+
+  useEffect(() => {
+    if (fontStyle !== editFontStyle) {
+      const newTask = tasksMain.map((itemTask) => {
+        if (itemTask.id === taskId) {
+          return {
+            ...itemTask,
+            fontStyle: editFontStyle,
+          };
+        } else {
+          return itemTask;
+        }
+      });
+
+      setTaskMain(newTask);
+    }
+  }, [editFontStyle]);
+
+  useEffect(() => {
+    if (theme !== editTheme) {
+      const newTask = tasksMain.map((itemTask) => {
+        if (itemTask.id === taskId) {
+          return {
+            ...itemTask,
+            theme: editTheme,
+          };
+        } else {
+          return itemTask;
+        }
+      });
+
+      setTaskMain(newTask);
+    }
+  }, [editTheme]);
+  useEffect(() => {
+    if (prefix !== editPrefix) {
+      const newTask = tasksMain.map((itemTask) => {
+        if (itemTask.id === taskId) {
+          return {
+            ...itemTask,
+            prefix: editPrefix,
+          };
+        } else {
+          return itemTask;
+        }
+      });
+
+      setTaskMain(newTask);
+    }
+  }, [editPrefix]);
+
   return (
     <div className="  pt-1 pb-2 px-2 rounded ">
       <div className="   border-b  pb-2">

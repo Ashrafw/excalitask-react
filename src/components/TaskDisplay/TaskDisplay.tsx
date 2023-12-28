@@ -76,7 +76,6 @@ const TaskDisplay = ({
     const numCompleteTaskWithNoSub = theTasks.filter(
       (item) => item.isComplete && !item.isSubtask
     ).length;
-
     const theSubtasks = theTasks.filter((item) => item.isSubtask);
     let a: number[] = [];
     for (let i = 0; i < theSubtasks.length; i++) {
@@ -87,11 +86,8 @@ const TaskDisplay = ({
           theSubtasks[i].subTaskList.length,
       ];
     }
-    console.log("a", a);
-    // calculation
     const completion = a.reduce((acc, item) => item + acc, 0) + numCompleteTaskWithNoSub;
     const percentage = Math.round((completion / totalTasks) * 100);
-    console.log("typeof percentage", typeof percentage);
     if (percentage > -1) {
       return Math.round((completion / totalTasks) * 100);
     } else {
@@ -136,10 +132,12 @@ const TaskDisplay = ({
                     height: "100%",
                     color: "rgba(255, 255, 255, 0.65)",
                     borderRadius: "10px",
+                    margin: 0,
+                    padding: 0,
                   }}
                 />
                 <div
-                  className={` absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[28px] h-[28px] ${task.theme} rounded-full text-[10px] font-extrabold flex justify-center items-center`}
+                  className={` absolute top-[3px] left-[3px] w-[28px] h-[28px] ${task.theme} rounded-full text-[10px] font-extrabold flex justify-center items-center`}
                 >
                   {checkCompletionPercentage()}
                   <span className=" font-semibold">%</span>

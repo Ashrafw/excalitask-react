@@ -23,9 +23,9 @@ const AddSingleTask = ({
 }) => {
   const [taskList, setTaskList] = useState<taskType[]>([]);
   const [taskTitle, setTaskTitle] = useState("");
-  const [editTheme, setEditTheme] = useState(task.theme);
-  const [editFontStyle, setEditFontStyle] = useState(task.fontStyle);
-  const [editPrefix, setEditPrefix] = useState(task.prefix);
+  const [editTheme] = useState(task.theme);
+  const [editFontStyle] = useState(task.fontStyle);
+  const [editPrefix] = useState(task.prefix);
   const [isEditSettings, setIsEditSettings] = useState(false);
   const { tasksMain, setTaskMain } = usePersistStore();
   const [animationNew] = useAutoAnimate();
@@ -205,9 +205,7 @@ const AddSingleTask = ({
             theme={task.theme}
             fontStyle={task.fontStyle}
             prefix={task.prefix}
-            setEditTheme={setEditTheme}
-            setEditFontStyle={setEditFontStyle}
-            setEditPrefix={setEditPrefix}
+            taskId={task.id}
           />
         ) : null}
       </div>

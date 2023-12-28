@@ -9,11 +9,11 @@ function App() {
 
   return (
     <div
-      className={` text-gray-950  ${backgroundColour} min-h-screen flex flex-col justify-between overflow-x-hidden  ${zoomNum} `}
+      className={` text-gray-950  ${backgroundColour} min-h-screen flex flex-col justify-between overflow-x-hidden  `}
     >
       <div>
         <Navbar openAddTask={openAddTask} setOpenAddTask={setOpenAddTask} />
-        <div className={`${openAddTask ? "blur" : ""} `}>
+        <div className={`${openAddTask ? "blur" : ""}  ${zoomNum}  `}>
           <MainPage />
         </div>
       </div>

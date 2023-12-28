@@ -1,3 +1,5 @@
+import { MainTaskType } from "../lib/zustand";
+
 export const letters: string[] = [
   "a",
   "b",
@@ -71,4 +73,29 @@ export const getDateFormatStart = () => {
 
 export function capitalizeFirstLetter(string: string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
+export function checkCompletionPercentage(task: MainTaskType) {
+  const theTasks = task.taskList;
+  const totalTasks = theTasks.length;
+  const numCompleteTaskWithNoSub = theTasks.filter(
+    (item) => item.isComplete && !item.isSubtask
+  ).length;
+  const theSubtasks = theTasks.filter((item) => item.isSubtask);
+  let a: number[] = [];
+  for (let i = 0; i < theSubtasks.length; i++) {
+    a = [
+      ...a,
+
+      theSubtasks[i].subTaskList.filter((item) => item.isComplete).length /
+        theSubtasks[i].subTaskList.length,
+    ];
+  }
+  const completion = a.reduce((acc, item) => item + acc, 0) + numCompleteTaskWithNoSub;
+  const percentage = Math.round((completion / totalTasks) * 100);
+  if (percentage > -1) {
+    return Math.round((completion / totalTasks) * 100);
+  } else {
+    return 0;
+  }
 }
