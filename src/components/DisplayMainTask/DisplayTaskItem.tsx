@@ -220,7 +220,7 @@ const DisplayTaskItem = ({
             onClick={() => {
               !task.isSubtask ? updateTaskCompletion(!task.isComplete) : null;
             }}
-            className={` flex gap-2 items-center h-9 hover:bg-slate-200/5  cursor-pointer `}
+            className={` flex gap-2 items-center min-h-9 hover:bg-slate-200/5  cursor-pointer `}
           >
             <div className="h-full w-8 flex items-center justify-center cursor-pointer">
               <input

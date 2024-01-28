@@ -37,7 +37,7 @@ const Navbar = ({
         <div className="w-[60%] flex justify-center items-center">
           <button
             onClick={() => {
-              if (tasksMain.length > 2) {
+              if (tasksMain.length >= 5) {
                 setShowAlert(true);
               } else {
                 setOpenAddTask((prev) => !prev);
@@ -50,7 +50,7 @@ const Navbar = ({
             {showAlert && (
               <div className=" z-50 absolute top-full --translate-x-[10px] w-[300px] shadow-md border-4 overflow-hidden bg-white border-slate-600 text-base rounded translate-y-[8px]">
                 <div className=" rounded-lg  bg-white p-2">
-                  You can only have 3 main tasks. More features coming soon.
+                  You can only have 5 main tasks. More features coming soon.
                 </div>
               </div>
             )}

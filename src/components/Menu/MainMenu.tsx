@@ -3,12 +3,14 @@ import { useRef, useState } from "react";
 import { usePersistStore } from "../../lib/zustand";
 // import ColorPicker from "react-pick-color";
 import { PiGearSix } from "react-icons/pi";
-import { useOnClickOutside } from "../../hooks/use-on-click-outside";
+// import { useOnClickOutside } from "../../hooks/use-on-click-outside";
+import { IoMdClose } from "react-icons/io";
 
 const MainMenu = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  // const [isOpen, setIsOpen] = useState(false);
+  const [isOpenBtn, setIsOpenBtn] = useState(false);
   const navRef = useRef<HTMLDivElement | null>(null);
-  useOnClickOutside(navRef, () => setIsOpen(false));
+  // useOnClickOutside(navRef, () => setIsOpen(false));
 
   const { backgroundColour, setBackgroundColour, setZoomNum, zoomNum } =
     usePersistStore();
@@ -16,12 +18,12 @@ const MainMenu = () => {
   return (
     <div className="relative">
       <button
-        onClick={() => setIsOpen((prev) => !prev)}
+        onClick={() => setIsOpenBtn((prev) => !prev)}
         className={`  w-[40px] h-[40px] p-2 flex shadow-sm justify-center items-center rounded bg-white text-gray-700  hover:bg-slate-100 text-2xl`}
       >
-        <PiGearSix />
+        {!isOpenBtn ? <PiGearSix /> : <IoMdClose />}
       </button>
-      {isOpen ? (
+      {isOpenBtn ? (
         <div
           className=" absolute  mt-2  rounded-md   right-0 z-20 shadow-md w-[260px]"
           ref={navRef}

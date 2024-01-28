@@ -111,7 +111,7 @@ const DisplaySubTaskItem = ({
   };
   return (
     <div
-      className={`flex gap-2 items-center h-[32px] px-2  hover:bg-slate-400 hover:bg-opacity-10 border-l ${
+      className={`flex gap-2 items-center min-h-[32px] px-2  hover:bg-slate-400 hover:bg-opacity-10 border-l ${
         isLastSubItem ? "  " : " border-b"
       }`}
       onClick={() => (!isEdit ? updateTaskCompletion(!subTask.isComplete) : null)}
