@@ -7,9 +7,16 @@ interface AddNewSingleTaskProps {
   theme: string;
   fontStyle: string;
   setNewTaskList: React.Dispatch<React.SetStateAction<taskType[]>>;
+  errorInput: boolean;
+  setErrorInput: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const AddNewSingleTask = ({ theme, setNewTaskList }: AddNewSingleTaskProps) => {
+const AddNewSingleTask = ({
+  theme,
+  setNewTaskList,
+  errorInput,
+  setErrorInput,
+}: AddNewSingleTaskProps) => {
   const [taskTitle, setTaskTitle] = useState("");
 
   const handleSubmitNewTask = (e: any) => {
@@ -26,12 +33,12 @@ const AddNewSingleTask = ({ theme, setNewTaskList }: AddNewSingleTaskProps) => {
       },
     ]);
     setTaskTitle("");
+    setErrorInput(false);
   };
   return (
-    <div>
-      {" "}
+    <div className="border-t-2 p-2 ">
       <form
-        className=" flex items-center gap-1 border p-2 bg-white rounded shadow "
+        className=" flex items-center gap-2   border-gray-300   "
         onSubmit={handleSubmitNewTask}
       >
         <input
@@ -53,6 +60,9 @@ const AddNewSingleTask = ({ theme, setNewTaskList }: AddNewSingleTaskProps) => {
           <FiPlus />
         </button>
       </form>
+      {errorInput && (
+        <p className=" px-2 pt-1 text-red-600 text-xs">You must input a task!</p>
+      )}
     </div>
   );
 };

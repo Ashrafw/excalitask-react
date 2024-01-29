@@ -28,7 +28,7 @@ const AddNewSubTask = ({
   const handleDeleteSubTask = (id: string) => {
     setSubTaskList((prev) => prev.filter((val) => val.id !== id));
   };
-  console.log("subTaskList", subTaskList);
+  // console.log("subTaskList", subTaskList);
   return (
     <div className={`flex items-center justify-start gap-2 ${index === 0 ? "mt-2" : ""}`}>
       <button

@@ -8,12 +8,15 @@ import { letters } from "../../helper/helper";
 import { v4 as uuidv4 } from "uuid";
 import DisplaySubTaskItem from "./DisplaySubTaskItem";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
+import { FaIndent } from "react-icons/fa";
+import Tooltip from "@mui/material/Tooltip";
 type DisplayTaskItem = {
   index: number;
   task: taskType;
   actualMainTask: MainTaskType;
   editModeId: string;
   isAfter: boolean;
+  isBorder: boolean;
 };
 const DisplayTaskItem = ({
   index,
@@ -21,6 +24,7 @@ const DisplayTaskItem = ({
   actualMainTask,
   editModeId,
   isAfter,
+  isBorder,
 }: DisplayTaskItem) => {
   const [isDropDown, setIsDropDown] = useState(true);
   const [titleEdit, setTitleEdit] = useState(task.title);
@@ -63,18 +67,25 @@ const DisplayTaskItem = ({
 
   const handleAccent = () => {
     if (actualMainTask.theme === "bg-slate-700") {
+      return "accent-[#333333]";
       return "accent-[#334155]";
     } else if (actualMainTask.theme === "bg-neutral-900") {
+      return "accent-[#922B3E]";
       return "accent-[#171717b2]";
     } else if (actualMainTask.theme === "bg-cyan-800") {
+      return "accent-[#546E7A]";
       return "accent-[#155E75]";
     } else if (actualMainTask.theme === "bg-emerald-700") {
       return "accent-[#047857]";
+      return "accent-[#047857]";
     } else if (actualMainTask.theme === "bg-rose-900") {
+      return "accent-[#BFB7A1]";
       return "accent-[#881337]";
     } else if (actualMainTask.theme === "bg-pink-700") {
+      return "accent-[#5E6C84]";
       return "accent-[#BE185E]";
     } else {
+      return "accent-[#eaeaea]";
       return "accent-slate-700";
     }
   };
@@ -203,16 +214,18 @@ const DisplayTaskItem = ({
                 {isDropDown ? <IoIosArrowUp /> : <IoIosArrowDown />}
               </div>
             ) : (
-              <button
-                onClick={() => {
-                  onFocus();
-                  setOpenSubtask(true);
-                  setIsDropDown(true);
-                }}
-                className="h-full w-8 flex items-center justify-center cursor-pointer "
-              >
-                <FaPlus />
-              </button>
+              <Tooltip title="Add subtasks" arrow>
+                <button
+                  onClick={() => {
+                    onFocus();
+                    setOpenSubtask(true);
+                    setIsDropDown(true);
+                  }}
+                  className="h-full w-8 flex items-center justify-center cursor-pointer "
+                >
+                  <FaIndent />
+                </button>
+              </Tooltip>
             )}
           </div>
         ) : (
@@ -298,7 +311,7 @@ const DisplayTaskItem = ({
                     required
                     type="text"
                     placeholder="Add a subtask"
-                    className=" border py-1 px-2 w-full text-sm rounded bg-white"
+                    className=" border py-[2px] px-2 w-full text-sm rounded bg-white"
                     value={subTaskTitle}
                     onFocus={onFocus}
                     onBlur={onBlur}
@@ -306,7 +319,7 @@ const DisplayTaskItem = ({
                     onChange={(e) => setSubTaskTitle(e.target.value)}
                   />
                   <button
-                    className={`w-[40px] ${actualMainTask.theme} text-gray-100 flex justify-center items-center text-sm p-1 rounded h-[28px]  `}
+                    className={`w-[28px] ${actualMainTask.theme} text-gray-100 flex justify-center items-center text-xs  rounded h-[24px]  `}
                   >
                     <FaPlus />
                   </button>

@@ -65,7 +65,7 @@ const AddSingleTask = ({
   //   }
   //   setAddSingleTask(false);
   // };
-  console.log("theme", theme);
+  // console.log("theme", theme);
   useEffect(() => {
     if (task.fontStyle !== editFontStyle) {
       const newTask = tasksMain.map((itemTask) => {

@@ -13,7 +13,7 @@ function App() {
     >
       <div>
         <Navbar openAddTask={openAddTask} setOpenAddTask={setOpenAddTask} />
-        <div className={`${openAddTask ? "blur" : ""}  ${zoomNum}  `}>
+        <div className={`${openAddTask ? " " : ""}  ${zoomNum}  `}>
           <MainPage />
         </div>
       </div>

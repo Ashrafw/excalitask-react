@@ -41,7 +41,7 @@ export const usePersistStore = create<StateStore>()(
       zoomNum: "zoom100",
       setZoomNum: (zoomNum: string) => set({ zoomNum }),
 
-      backgroundColour: "bg-slate-100",
+      backgroundColour: "bg-[#333333]",
       setBackgroundColour: (backgroundColour: string) => set({ backgroundColour }),
       //
       tasksMain: [],

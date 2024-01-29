@@ -4,6 +4,8 @@ import { useAutoAnimate } from "@formkit/auto-animate/react";
 import MainMenu from "./Menu/MainMenu";
 import AddNewTask from "./AddNewTask/AddNewTask";
 import { FiPlus } from "react-icons/fi";
+// import logo from "../assets/logo.png";
+import { FaArrowUp } from "react-icons/fa";
 
 const Navbar = ({
   openAddTask,
@@ -32,20 +34,30 @@ const Navbar = ({
         }`}
         ref={animationAlert}
       >
-        {/* <div className={`  `}> */}
-        <div className="w-[15%] h-1"></div>
+        <div className="w-[15%] ">
+          {/* <div className=" w-[40px] h-[40px] rounded ">
+            <img src={logo} alt="" srcSet="" className=" w-full" />
+          </div> */}
+        </div>
         <div className="w-[60%] flex justify-center items-center">
           <button
             onClick={() => {
-              if (tasksMain.length >= 5) {
+              if (tasksMain.length >= 15) {
                 setShowAlert(true);
               } else {
                 setOpenAddTask((prev) => !prev);
               }
             }}
             className={`
-          relative w-[40px] h-[40px] flex justify-center shadow items-center font- rounded bg-white  hover:bg-slate-100 text-2xl`}
+          relative w-[40px] h-[40px] flex justify-center shadow items-center font- rounded bg-white/60  hover:bg-slate-100 text-2xl`}
           >
+            {tasksMain.length === 0 && (
+              <p className=" absolute flex flex-col items-center  gap-1 w-[280px]  text-base left-1/2 -bottom-2  font-mali font-bold text-gray-300 -translate-x-1/2 translate-y-full">
+                <FaArrowUp />
+                <span>click hear to create your first task list</span>
+              </p>
+            )}
+
             <FiPlus />
             {showAlert && (
               <div className=" z-50 absolute top-full --translate-x-[10px] w-[300px] shadow-md border-4 overflow-hidden bg-white border-slate-600 text-base rounded translate-y-[8px]">
@@ -60,7 +72,6 @@ const Navbar = ({
         <div className="w-[15%] flex justify-end items-center">
           <MainMenu />
         </div>
-        {/* </div> */}
       </div>
 
       {/* {openAddTask && <AddTaskForm setOpenAddTask={setOpenAddTask} />} */}

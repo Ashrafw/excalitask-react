@@ -4,21 +4,28 @@ import { FaRegTrashAlt } from "react-icons/fa";
 import { SubTaskType, taskType } from "../../lib/zustand";
 import { v4 as uuidv4 } from "uuid";
 import AddNewSubTask from "./AddNewSubTask";
+import { PiTextIndentBold } from "react-icons/pi";
+import Tooltip from "@mui/material/Tooltip";
 
 const TaskItemAddSub = ({
   theme,
   task,
   setNewTaskList,
+  last,
 }: {
   theme: string;
   task: taskType;
   newTaskList: taskType[];
   setNewTaskList: React.Dispatch<React.SetStateAction<taskType[]>>;
+  last: boolean;
 }) => {
   const [titleEdit, setTitleEdit] = useState(task.title);
   const [subTaskList, setSubTaskList] = useState(task.subTaskList);
   const [openSubtask, setOpenSubtask] = useState(false);
   const [subTaskTitle, setSubTaskTitle] = useState("");
+  const [focused, setFocused] = useState(false);
+  const onFocusSubtask = () => setFocused(true);
+  const onBlurSubtask = () => setFocused(false);
 
   const handleSubmitSubTask = (e: any) => {
     e.preventDefault();
@@ -35,7 +42,13 @@ const TaskItemAddSub = ({
     });
 
     setSubTaskTitle("");
-    // onFocusSubtask();
+    onFocusSubtask();
+  };
+
+  const handleDeleteTask = (id: string) => {
+    setNewTaskList((prev) => {
+      return prev.filter((val) => val.id !== id);
+    });
   };
 
   useEffect(() => {
@@ -48,11 +61,11 @@ const TaskItemAddSub = ({
     }
   }, [subTaskList]);
   return (
-    <div className={`flex gap-2 items-center py-[1px] px-2 `}>
+    <div className={`flex gap-2 items-center py-1 px-2 ${last ? "" : "border-b"}`}>
       <div className="w-full">
         <div className="flex gap-2 items-center">
           <button
-            // onClick={() => handleDeleteTask(task.id)}
+            onClick={() => handleDeleteTask(task.id)}
             className="flex items-center justify-center w-[30px] h-[30px] text-sm  text-gray-400 p-2  rounded bg-gray-200 hover:bg-gray-300  "
           >
             <FaRegTrashAlt />
@@ -63,18 +76,20 @@ const TaskItemAddSub = ({
             value={titleEdit}
             onChange={(e) => setTitleEdit(e.target.value)}
           />
-
-          <button
-            onClick={() => {
-              // onFocusSubtask();
-              setOpenSubtask(true);
-              //   setDropDown((prev) => !prev);
-            }}
-            // className="   text-gray-500 text-md p-1 px-2 rounded-md  bg-gray-200 shadow "
-            className="flex items-center justify-center w-[30px] h-[30px] text-sm  text-gray-400 p-2 rounded bg-gray-200 hover:bg-gray-300  "
-          >
-            <FaPlus />
-          </button>
+          {subTaskList.length > 0 ? null : (
+            <Tooltip title="Add subtasks" arrow placement="right">
+              <button
+                onClick={() => {
+                  onFocusSubtask();
+                  setOpenSubtask(true);
+                  //   setDropDown((prev) => !prev);
+                }}
+                className="flex items-center justify-center w-[30px] h-[30px] text-[40px]  text-gray-400 p-[7px] rounded bg-gray-200 hover:bg-gray-300  "
+              >
+                <PiTextIndentBold />
+              </button>
+            </Tooltip>
+          )}
         </div>
         <div className="pl-[38px] flex flex-col gap-1 ">
           {subTaskList.map((subTask, i) => (
@@ -95,9 +110,9 @@ const TaskItemAddSub = ({
                   placeholder="Add a subtask"
                   className=" border-2 py-1 px-4 w-full text-sm rounded"
                   value={subTaskTitle}
-                  //   onFocus={onFocusSubtask}
-                  //   onBlur={onBlurSubtask}
-                  //   autoFocus={focusedSubtask}
+                  // onFocus={onFocusSubtask}
+                  onBlur={onBlurSubtask}
+                  autoFocus={focused}
                   onChange={(e) => setSubTaskTitle(e.target.value)}
                 />
                 <button

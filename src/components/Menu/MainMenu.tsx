@@ -19,7 +19,9 @@ const MainMenu = () => {
     <div className="relative">
       <button
         onClick={() => setIsOpenBtn((prev) => !prev)}
-        className={`  w-[40px] h-[40px] p-2 flex shadow-sm justify-center items-center rounded bg-white text-gray-700  hover:bg-slate-100 text-2xl`}
+        className={`  w-[40px] h-[40px] p-2 flex shadow-sm justify-center items-center rounded  ${
+          !isOpenBtn ? "bg-white/60" : "bg-white"
+        } text-gray-700  hover:bg-slate-100 text-2xl`}
       >
         {!isOpenBtn ? <PiGearSix /> : <IoMdClose />}
       </button>
@@ -33,25 +35,41 @@ const MainMenu = () => {
               <h2 className=" text-sm pb-2 underline font-bold text-gray-800">
                 Background
               </h2>
-              <div className=" grid grid-cols-3  gap-x-4 gap-y-2 items-center">
+              <div className=" grid grid-cols-3  gap-x-2 gap-y-2 items-center">
                 <button
-                  onClick={() => setBackgroundColour("bg-slate-100")}
-                  className={` w-full h-6 bg-slate-100 rounded shadow-md  ${
-                    backgroundColour === "bg-slate-100"
-                      ? " ring-[3px] ring-blue-400 "
-                      : ""
+                  onClick={() => setBackgroundColour("bg-slate-50")}
+                  className={` w-full h-6 bg-slate-50 rounded shadow-md  ${
+                    backgroundColour === "bg-slate-50" ? " ring-[3px] ring-blue-400 " : ""
                   } `}
                 ></button>
                 <button
+                  onClick={() => setBackgroundColour("bg-[#2e3234]")}
+                  className={` w-full h-6 bg-[#2e3234] rounded shadow-md ${
+                    backgroundColour === "bg-[#2e3234]" ? " ring-[3px] ring-blue-400" : ""
+                  }`}
+                ></button>{" "}
+                <button
                   onClick={() => setBackgroundColour("bg-slate-600")}
-                  className={` w-full h-6 bg-slate-800 rounded shadow-md ${
-                    backgroundColour === "bg-slate-800" ? " ring-[3px] ring-blue-400" : ""
+                  className={` w-full h-6 bg-slate-600 rounded shadow-md ${
+                    backgroundColour === "bg-slate-600" ? " ring-[3px] ring-blue-400" : ""
                   }`}
                 ></button>
                 <button
-                  onClick={() => setBackgroundColour("bg-slate-800")}
-                  className={` w-full h-6 bg-slate-800 rounded shadow-md ${
-                    backgroundColour === "bg-slate-800" ? " ring-[3px] ring-blue-400" : ""
+                  onClick={() => setBackgroundColour("bg-[#2c8486]")}
+                  className={` w-full h-6 bg-[#2c8486] rounded shadow-md ${
+                    backgroundColour === "bg-[#2c8486]" ? " ring-[3px] ring-blue-400" : ""
+                  }`}
+                ></button>{" "}
+                <button
+                  onClick={() => setBackgroundColour("bg-[#1e647f]")}
+                  className={` w-full h-6 bg-[#1e647f] rounded shadow-md ${
+                    backgroundColour === "bg-[#1e647f]" ? " ring-[3px] ring-blue-400" : ""
+                  }`}
+                ></button>{" "}
+                <button
+                  onClick={() => setBackgroundColour("bg-[#9a639e]")}
+                  className={` w-full h-6 bg-[#9a639e] rounded shadow-md ${
+                    backgroundColour === "bg-[#9a639e]" ? " ring-[3px] ring-blue-400" : ""
                   }`}
                 ></button>
               </div>

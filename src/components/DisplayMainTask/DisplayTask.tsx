@@ -49,7 +49,7 @@ const DisplayTask = ({ actualMainTask, editModeId, setEditModeId }: DisplayTaskT
     <div
       className={` relative shadow-xl rounded-lg overflow-hidden  max-w-[400px] min-w-[310px] w-[95%] ${actualMainTask.fontStyle} `}
     >
-      <div className="h-12 mb-2">
+      <div className={`min-h-12  ${actualMainTask.theme}`}>
         {actualMainTask.id === editModeId ? (
           <div
             className={`rounded-tl rounded-tr border-slate-800 p-2 ${actualMainTask.theme} text-gray-800 flex justify-between items-center gap-4`}
@@ -69,7 +69,7 @@ const DisplayTask = ({ actualMainTask, editModeId, setEditModeId }: DisplayTaskT
           </div>
         ) : (
           <div
-            className={`rounded-tl rounded-tr border-slate-800 p-2 ${actualMainTask.theme} text-gray-200 flex justify-between items-center gap-4`}
+            className={`rounded-tl rounded-tr  p-2 ${actualMainTask.theme} text-gray-200 flex justify-between items-center gap-4`}
           >
             <div className=" grid  grid-flow-col items-center gap-1">
               <div className="relative w-[34px] h-[34px] bg-slate-50 bg-opacity-20 rounded-full">
@@ -100,7 +100,6 @@ const DisplayTask = ({ actualMainTask, editModeId, setEditModeId }: DisplayTaskT
             <button
               onClick={() => {
                 setEditModeId(actualMainTask.id);
-                //   setIsFinishEdit(true);
               }}
               className=" bg-white bg-opacity-20 text-2xl rounded p-1 "
             >
@@ -116,90 +115,101 @@ const DisplayTask = ({ actualMainTask, editModeId, setEditModeId }: DisplayTaskT
       >
         {" "}
         <div
-          className="bg-gray-50 flex flex-col px-2 "
+          className={` p-2  ${
+            actualMainTask.id === editModeId ? actualMainTask.theme : null
+          }`}
           // ref={animationParent}
         >
-          {actualMainTask.taskList?.map((task, i) => (
-            <DisplayTaskItem
-              key={task.id}
-              index={i}
-              task={task}
-              actualMainTask={actualMainTask}
-              editModeId={editModeId}
-              isAfter={
-                actualMainTask.taskList[i + 1] && actualMainTask.taskList[i + 1].isSubtask
-              }
-            />
-          ))}
+          <div className=" bg-gray-50 flex flex-col px-2 rounded">
+            {actualMainTask.taskList?.map((task, i) => (
+              <DisplayTaskItem
+                key={task.id}
+                index={i}
+                task={task}
+                actualMainTask={actualMainTask}
+                editModeId={editModeId}
+                isAfter={
+                  actualMainTask.taskList[i + 1] &&
+                  actualMainTask.taskList[i + 1].isSubtask
+                }
+                isBorder={actualMainTask.taskList.length === i + 1}
+              />
+            ))}
+          </div>
         </div>
         {actualMainTask.id === editModeId ? (
-          <div
-            className={` ${actualMainTask.theme} bg-opacity-70 p-2  rounded-lg flex flex-col gap-2`}
-          >
-            <DisplayAddNewTask
-              theme={actualMainTask.theme}
-              taskId={actualMainTask.id}
-
-              // focused={focused}
-              // setFocused={setFocused}
-            />
+          <div className={` rounded-lg flex flex-col `}>
             <div
-              className="flex flex-col gap-2 shadow rounded p-1 bg-white mmb-2 w-full"
-              ref={animationSetting}
+              className={` ${actualMainTask.theme} bg-opacity-60 p-2 flex flex-col gap-2`}
+            >
+              <DisplayAddNewTask
+                theme={actualMainTask.theme}
+                taskId={actualMainTask.id}
+
+                // focused={focused}
+                // setFocused={setFocused}
+              />
+            </div>
+            <div
+              className={` ${actualMainTask.theme} bg-opacity-10 p-2 flex flex-col gap-2`}
             >
               <div
-                className=" flex justify-between items-center cursor-pointer p-1 rounded bg-white"
-                onClick={() => setIsEditSettings((prev) => !prev)}
+                className={`flex flex-col gap-2 shadow rounded p-1 bg-white mmb-2 w-full   `}
+                ref={animationSetting}
               >
-                <h1 className=" pl-1 text-sm font-medium text-gray-800">
-                  Customize settings
-                </h1>
                 <div
-                  className={` flex items-center justify-center p-1 bg-black/10 rounded`}
+                  className=" flex justify-between items-center cursor-pointer p-1 rounded bg-white"
+                  onClick={() => setIsEditSettings((prev) => !prev)}
                 >
-                  {isEditSettings ? (
-                    <button className={`  `}>
-                      <IoIosArrowUp />
-                    </button>
-                  ) : (
-                    <button className={` `}>
-                      <IoMdSettings />
-                    </button>
-                  )}
+                  <h1 className=" pl-1 text-sm font-medium text-gray-800">
+                    Customize settings
+                  </h1>
+                  <div
+                    className={` flex items-center justify-center p-1 bg-black/10 rounded`}
+                  >
+                    {isEditSettings ? (
+                      <button className={`  `}>
+                        <IoIosArrowUp />
+                      </button>
+                    ) : (
+                      <button className={` `}>
+                        <IoMdSettings />
+                      </button>
+                    )}
+                  </div>
                 </div>
+
+                {isEditSettings ? (
+                  <AddSettingSingle
+                    theme={actualMainTask.theme}
+                    fontStyle={actualMainTask.fontStyle}
+                    prefix={actualMainTask.prefix}
+                    taskId={actualMainTask.id}
+                  />
+                ) : null}
               </div>
 
-              {isEditSettings ? (
-                <AddSettingSingle
-                  theme={actualMainTask.theme}
-                  fontStyle={actualMainTask.fontStyle}
-                  prefix={actualMainTask.prefix}
-                  taskId={actualMainTask.id}
-                />
-              ) : null}
+              <div className=" grid grid-cols-2 items-center px-4 py-2 rounded gap-4 w-full justify-center bg-white text-gray-50 cursor-pointer text-sm">
+                <button
+                  //   onMouseEnter={() => setIsShown(true)}
+                  //   onMouseLeave={() => setIsShown(false)}
+                  onClick={() => {
+                    handleDeleteAll(actualMainTask.id);
+                    setEditModeId("");
+                  }}
+                  className={` bg-gray-200 w-full h-full shadow text-gray-900 py-2 text-sm rounded flex items-center justify-center gap-2 hover:bg-opacity-70 `}
+                >
+                  <FaRegTrashAlt />
+                  <p>Delete All</p>
+                </button>
+                <button
+                  onClick={() => setEditModeId("")}
+                  className={` ${actualMainTask.theme} w-full h-full shadow text-gray-50 py-2 text-sm rounded flex items-center justify-center gap-2  hover:bg-opacity-90 `}
+                >
+                  Done
+                </button>
+              </div>
             </div>
-
-            <div className=" grid grid-cols-2 items-center px-4 py-2 rounded gap-4 w-full justify-center bg-white text-gray-50 cursor-pointer text-sm">
-              <button
-                //   onMouseEnter={() => setIsShown(true)}
-                //   onMouseLeave={() => setIsShown(false)}
-                onClick={() => {
-                  handleDeleteAll(actualMainTask.id);
-                  setEditModeId("");
-                }}
-                className={` bg-gray-200 w-full h-full shadow text-gray-900 py-1   text-sm rounded flex items-center justify-center gap-2 hover:bg-opacity-70 `}
-              >
-                <FaRegTrashAlt />
-                <p>Delete All</p>
-              </button>
-              <button
-                onClick={() => setEditModeId("")}
-                className={` ${actualMainTask.theme} w-full h-full shadow text-gray-50 py-1 text-sm rounded flex items-center justify-center gap-2  hover:bg-opacity-90 `}
-              >
-                Done
-              </button>
-            </div>
-            {/* <AddSingleTask taskId={task.id} setAddSingleTask={setAddSingleTask} /> */}
           </div>
         ) : null}
       </div>
