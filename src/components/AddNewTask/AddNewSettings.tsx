@@ -18,7 +18,7 @@ const AddNewSettings = ({
   setPrefix,
 }: AddNewSettingsProps) => {
   return (
-    <div className="  pt-1 pb-2 px-2 rounded ">
+    <div className="  pt-1 pb-2 px-2 rounded max-sm:text-xs">
       <div className="   border-b  pb-2">
         <div className="  gap-2 items-center  text-xs">
           <div className=" grid grid-cols-6 gap-1">

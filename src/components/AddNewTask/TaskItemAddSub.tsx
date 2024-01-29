@@ -61,18 +61,18 @@ const TaskItemAddSub = ({
     }
   }, [subTaskList]);
   return (
-    <div className={`flex gap-2 items-center py-1 px-2 ${last ? "" : "border-b"}`}>
+    <div className={`flex gap-2 items-center py-[5px] px-2 ${last ? "" : "border-b"}`}>
       <div className="w-full">
         <div className="flex gap-2 items-center">
           <button
             onClick={() => handleDeleteTask(task.id)}
-            className="flex items-center justify-center w-[30px] h-[30px] text-sm  text-gray-400 p-2  rounded bg-gray-200 hover:bg-gray-300  "
+            className="flex items-center justify-center w-[30px] h-[30px] max-sm:h-[25px] text-sm  text-gray-400 p-2  rounded bg-gray-200 hover:bg-gray-300  "
           >
             <FaRegTrashAlt />
           </button>
           <input
             type="text"
-            className=" w-[100%] rounded px-2 py-[2px] border text-base"
+            className=" w-[100%] rounded px-2 py-[2px] border text-base max-sm:text-sm"
             value={titleEdit}
             onChange={(e) => setTitleEdit(e.target.value)}
           />
@@ -84,7 +84,7 @@ const TaskItemAddSub = ({
                   setOpenSubtask(true);
                   //   setDropDown((prev) => !prev);
                 }}
-                className="flex items-center justify-center w-[30px] h-[30px] text-[40px]  text-gray-400 p-[7px] rounded bg-gray-200 hover:bg-gray-300  "
+                className="flex items-center justify-center w-[30px] h-[30px] max-sm:h-[25px] text-[40px]  text-gray-400 p-[7px] rounded bg-gray-200 hover:bg-gray-300  "
               >
                 <PiTextIndentBold />
               </button>
@@ -108,7 +108,7 @@ const TaskItemAddSub = ({
                   required
                   type="text"
                   placeholder="Add a subtask"
-                  className=" border-2 py-1 px-4 w-full text-sm rounded"
+                  className=" border-2 py-1 px-4 w-full text-sm rounded max-sm:text-xs"
                   value={subTaskTitle}
                   // onFocus={onFocusSubtask}
                   onBlur={onBlurSubtask}
@@ -116,7 +116,7 @@ const TaskItemAddSub = ({
                   onChange={(e) => setSubTaskTitle(e.target.value)}
                 />
                 <button
-                  className={`  w-[40px] ${theme} text-gray-100 text-sm p-1 rounded h-[32px]  flex items-center justify-center `}
+                  className={`  w-[40px] ${theme} max-sm:h-[25px] text-gray-100 text-sm p-1 rounded h-[32px]  flex items-center justify-center `}
                 >
                   <FaPlus />
                 </button>

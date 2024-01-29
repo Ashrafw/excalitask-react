@@ -48,18 +48,18 @@ const AddNewTask = ({
 
   return (
     <div
-      className={`absolute w-full bg-black/30 h-screen z-40 top-0 left-0 flex justify-center items-start pt-16 max-sm:pt-6 blur-none`}
+      className={`absolute w-full bg-black/30 h-screen z-40 top-0 left-0 flex justify-center items-start pt-16 max-sm:pt-4  blur-none`}
     >
       <div
-        className={` ${zoomNum}  relative shadow-xl rounded-lg bg-[#fbfbfb] overflow-hidden max-w-[440px] min-w-[300px] p-2 w-[95%] ${fontStyle}`}
+        className={` ${zoomNum}  relative shadow-xl rounded-lg bg-[#fbfbfb] overflow-hidden max-w-[440px] min-w-[310px] p-2 max-sm:p-1 w-[95%] ${fontStyle}`}
       >
-        <div className={`p-2 flex flex-col `}>
+        <div className={`p-2 flex flex-col max-sm:p-1 `}>
           <div className={` bg-white rounded shadow`}>
-            <div className={`p-2  rounded-t ${theme} `}>
+            <div className={`p-2 max-[430px]:p-1   rounded-t ${theme} `}>
               {/* Task category */}
               <input
                 type="text"
-                className="w-full rounded border p-1 px-2 font-semibold placeholder:font-normal text-base "
+                className="w-full rounded border p-1 px-2 font-semibold placeholder:font-normal text-base max-sm:text-sm "
                 value={categoryEdit}
                 placeholder={`${getDateFormatStart()} `}
                 onChange={(e) => setCategoryEdit(e.target.value)}
@@ -69,7 +69,7 @@ const AddNewTask = ({
             {/* Display the entered Task */}
             {newTaskList.length > 0 ? (
               <div
-                className=" bg-gray-50 flex flex-col  text-[16px] py- px-  "
+                className=" bg-gray-50 flex flex-col text-[16px] max-sm:text-sm "
                 ref={animationTwo}
               >
                 {newTaskList?.map((task, i) => (
@@ -106,7 +106,7 @@ const AddNewTask = ({
               className=" flex justify-between items-center cursor-pointer p-1 rounded "
               onClick={() => setIsEditSettings((prev) => !prev)}
             >
-              <h1 className=" pl-1 text-sm font-medium text-gray-800">
+              <h1 className=" pl-1 text-sm font-medium text-gray-800 max-sm:text-xs">
                 Customize settings
               </h1>
               <div
@@ -136,16 +136,16 @@ const AddNewTask = ({
           </div>
 
           {/* Saving and closing */}
-          <div className=" grid grid-cols-2 items-center mt-2 rounded gap-4 w-full justify-center  text-gray-50 cursor-pointer text-sm">
+          <div className=" grid grid-cols-2 mt-2 rounded gap-4 w-full  text-gray-50 text-sm">
             <button
               onClick={() => setOpenAddTask(false)}
-              className={` bg-gray-200 min-w-[120px] shadow text-gray-900 py-1  text-base rounded flex items-center justify-center gap-2 hover:bg-gray-300 `}
+              className={` bg-gray-200 shadow text-gray-900 py-1  text-base rounded flex items-center justify-center gap-2 hover:bg-gray-300 max-sm:text-xs"`}
             >
-              <p>Cancel</p>
+              Cancel
             </button>
             <button
               onClick={handleSave}
-              className={` ${theme} min-w-[120px] shadow text-gray-50 py-1 text-base rounded flex items-center justify-center gap-2  hover:bg-opacity-50 `}
+              className={` ${theme} shadow text-gray-50 py-1 text-base rounded flex items-center justify-center gap-2  hover:bg-opacity-50 max-sm:text-xs"`}
             >
               Save
             </button>

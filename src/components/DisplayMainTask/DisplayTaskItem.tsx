@@ -24,8 +24,8 @@ const DisplayTaskItem = ({
   actualMainTask,
   editModeId,
   isAfter,
-  isBorder,
-}: DisplayTaskItem) => {
+}: // isBorder,
+DisplayTaskItem) => {
   const [isDropDown, setIsDropDown] = useState(true);
   const [titleEdit, setTitleEdit] = useState(task.title);
   const [subTaskTitle, setSubTaskTitle] = useState("");
