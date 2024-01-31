@@ -29,43 +29,7 @@ const AddSingleTask = ({
   const [isEditSettings, setIsEditSettings] = useState(false);
   const { tasksMain, setTaskMain } = usePersistStore();
   const [animationNew] = useAutoAnimate();
-  // const handleSubmitTask = (e: any) => {
-  //   e.preventDefault();
-  //   setTaskList((prev) => [
-  //     ...prev,
-  //     {
-  //       id: uuidv4(),
-  //       title: taskTitle,
-  //       isComplete: false,
-  //       subTaskList: [],
-  //       isSubtask: false,
-  //     },
-  //   ]);
-  //   setTaskTitle("");
-  // };
-  // const handleSubmitAll = (e: any) => {
-  //   e.preventDefault();
 
-  //   if (taskList.length > 0) {
-  //     const newTask = tasksMain.map((itemTask) => {
-  //       if (itemTask.id === taskId) {
-  //         return {
-  //           ...itemTask,
-  //           theme: editTheme,
-  //           fontStyle: editFontStyle,
-  //           prefix: editPrefix,
-  //           taskList: [...itemTask.taskList, ...taskList],
-  //         };
-  //       } else {
-  //         return itemTask;
-  //       }
-  //     });
-
-  //     setTaskMain(newTask);
-  //   }
-  //   setAddSingleTask(false);
-  // };
-  // console.log("theme", theme);
   useEffect(() => {
     if (task.fontStyle !== editFontStyle) {
       const newTask = tasksMain.map((itemTask) => {
@@ -125,6 +89,7 @@ const AddSingleTask = ({
       isComplete: false,
       subTaskList: [],
       isSubtask: false,
+      isDropDown: true,
     };
 
     const newTaskList = tasksMain.map((item) => {

@@ -14,7 +14,7 @@ const AddNewTask = ({
 }: {
   setOpenAddTask: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
-  const { tasksMain, setTaskMain, zoomNum } = usePersistStore();
+  const { tasksMain, setTaskMain } = usePersistStore();
   const [categoryEdit, setCategoryEdit] = useState("");
   const [theme, setTheme] = useState("bg-[#333333]");
   const [fontStyle, setFontStyle] = useState("font-poppins");
@@ -51,7 +51,7 @@ const AddNewTask = ({
       className={`absolute w-full bg-black/30 h-screen z-40 top-0 left-0 flex justify-center items-start pt-16 max-sm:pt-4  blur-none`}
     >
       <div
-        className={` ${zoomNum}  relative shadow-xl rounded-lg bg-[#fbfbfb] overflow-hidden max-w-[440px] min-w-[310px] p-2 max-sm:p-1 w-[95%] ${fontStyle}`}
+        className={`   relative shadow-xl rounded-lg bg-[#fbfbfb] overflow-hidden max-w-[440px] min-w-[310px] p-2 max-sm:p-1 w-[95%] ${fontStyle}`}
       >
         <div className={`p-2 flex flex-col max-sm:p-1 `}>
           <div className={` bg-white rounded shadow`}>
@@ -59,7 +59,7 @@ const AddNewTask = ({
               {/* Task category */}
               <input
                 type="text"
-                className="w-full rounded border p-1 px-2 font-semibold placeholder:font-normal text-base max-sm:text-sm "
+                className="w-full rounded border p-1 px-2 font-semibold placeholder:font-normal text-base  "
                 value={categoryEdit}
                 placeholder={`${getDateFormatStart()} `}
                 onChange={(e) => setCategoryEdit(e.target.value)}
@@ -68,10 +68,7 @@ const AddNewTask = ({
 
             {/* Display the entered Task */}
             {newTaskList.length > 0 ? (
-              <div
-                className=" bg-gray-50 flex flex-col text-[16px] max-sm:text-sm "
-                ref={animationTwo}
-              >
+              <div className=" bg-gray-50 flex flex-col text-[16px]  " ref={animationTwo}>
                 {newTaskList?.map((task, i) => (
                   <TaskItemAddSub
                     key={task.id}
@@ -106,7 +103,7 @@ const AddNewTask = ({
               className=" flex justify-between items-center cursor-pointer p-1 rounded "
               onClick={() => setIsEditSettings((prev) => !prev)}
             >
-              <h1 className=" pl-1 text-sm font-medium text-gray-800 max-sm:text-xs">
+              <h1 className=" pl-1 text-sm font-medium text-gray-800  ">
                 Customize settings
               </h1>
               <div
@@ -136,16 +133,16 @@ const AddNewTask = ({
           </div>
 
           {/* Saving and closing */}
-          <div className=" grid grid-cols-2 mt-2 rounded gap-4 w-full  text-gray-50 text-sm">
+          <div className=" grid grid-cols-2 mt-2 rounded gap-4 w-full  text-gray-50 text-base">
             <button
               onClick={() => setOpenAddTask(false)}
-              className={` bg-gray-200 shadow text-gray-900 py-1  text-base rounded flex items-center justify-center gap-2 hover:bg-gray-300 max-sm:text-xs"`}
+              className={` bg-gray-200 shadow text-gray-900 py-1  text-base rounded flex items-center justify-center gap-2 hover:bg-gray-300 `}
             >
               Cancel
             </button>
             <button
               onClick={handleSave}
-              className={` ${theme} shadow text-gray-50 py-1 text-base rounded flex items-center justify-center gap-2  hover:bg-opacity-50 max-sm:text-xs"`}
+              className={` ${theme} shadow text-gray-50 py-1 text-base rounded flex items-center justify-center gap-2  hover:bg-opacity-50 `}
             >
               Save
             </button>

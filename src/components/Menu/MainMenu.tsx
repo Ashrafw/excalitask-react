@@ -12,8 +12,7 @@ const MainMenu = () => {
   const navRef = useRef<HTMLDivElement | null>(null);
   // useOnClickOutside(navRef, () => setIsOpen(false));
 
-  const { backgroundColour, setBackgroundColour, setZoomNum, zoomNum } =
-    usePersistStore();
+  const { backgroundColour, setBackgroundColour } = usePersistStore();
 
   return (
     <div className="relative">
@@ -27,15 +26,13 @@ const MainMenu = () => {
       </button>
       {isOpenBtn ? (
         <div
-          className=" absolute  mt-2  rounded-md   right-0 z-20 shadow-md w-[260px]"
+          className=" absolute  mt-2  rounded-md   right-0 z-20 shadow-md w-[260px] max-w-[260px]"
           ref={navRef}
         >
-          <div className="  bg-white  p-2 rounded-md  flex flex-col gap-4 right-0 z-20 shadow-md">
+          <div className="  bg-slate-100  p-2 rounded-md  flex flex-col gap-4 right-0 z-20 shadow-md">
             <div>
-              <h2 className=" text-sm pb-2 underline font-bold text-gray-800">
-                Background
-              </h2>
-              <div className=" grid grid-cols-3  gap-x-2 gap-y-2 items-center">
+              <h2 className=" text-sm pb-2  font-bold text-gray-800">Background theme</h2>
+              <div className=" grid grid-cols-5  gap-x-2 gap-y-2 items-center">
                 <button
                   onClick={() => setBackgroundColour("bg-slate-50")}
                   className={` w-full h-6 bg-slate-50 rounded shadow-md  ${
@@ -66,18 +63,12 @@ const MainMenu = () => {
                     backgroundColour === "bg-[#1e647f]" ? " ring-[3px] ring-blue-400" : ""
                   }`}
                 ></button>{" "}
-                <button
-                  onClick={() => setBackgroundColour("bg-[#9a639e]")}
-                  className={` w-full h-6 bg-[#9a639e] rounded shadow-md ${
-                    backgroundColour === "bg-[#9a639e]" ? " ring-[3px] ring-blue-400" : ""
-                  }`}
-                ></button>
               </div>
               {/* <div className="mt-6">
               <ColorPicker color={color} onChange={(color) => setColor(color.hex)} />
             </div> */}
             </div>
-            <div>
+            {/* <div>
               <h2 className=" text-sm pb-2 underline font-bold text-gray-800">Size</h2>
               <div className="  grid grid-cols-5 gap-2 ">
                 <button
@@ -126,7 +117,7 @@ const MainMenu = () => {
                   XL
                 </button>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
       ) : null}

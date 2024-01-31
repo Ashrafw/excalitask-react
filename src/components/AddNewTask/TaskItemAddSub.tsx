@@ -72,7 +72,7 @@ const TaskItemAddSub = ({
           </button>
           <input
             type="text"
-            className=" w-[100%] rounded px-2 py-[2px] border text-base max-sm:text-sm"
+            className=" w-[100%] rounded px-2 py-[2px] border text-base "
             value={titleEdit}
             onChange={(e) => setTitleEdit(e.target.value)}
           />
@@ -108,7 +108,7 @@ const TaskItemAddSub = ({
                   required
                   type="text"
                   placeholder="Add a subtask"
-                  className=" border-2 py-1 px-4 w-full text-sm rounded max-sm:text-xs"
+                  className=" border-2 py-1 px-4 w-full text-sm rounded text-base"
                   value={subTaskTitle}
                   // onFocus={onFocusSubtask}
                   onBlur={onBlurSubtask}

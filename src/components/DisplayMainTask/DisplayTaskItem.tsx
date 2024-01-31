@@ -4,7 +4,7 @@ import { FaPlus } from "react-icons/fa6";
 import { IoIosArrowDown } from "react-icons/io";
 import { IoIosArrowUp } from "react-icons/io";
 import { MainTaskType, taskType, usePersistStore } from "../../lib/zustand";
-import { letters } from "../../helper/helper";
+import { accentVariants, letters } from "../../helper/helper";
 import { v4 as uuidv4 } from "uuid";
 import DisplaySubTaskItem from "./DisplaySubTaskItem";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
@@ -17,6 +17,7 @@ type DisplayTaskItem = {
   editModeId: string;
   isAfter: boolean;
   isBorder: boolean;
+  theme: string;
 };
 const DisplayTaskItem = ({
   index,
@@ -24,9 +25,10 @@ const DisplayTaskItem = ({
   actualMainTask,
   editModeId,
   isAfter,
-}: // isBorder,
+}: // theme,
+// isBorder,
 DisplayTaskItem) => {
-  const [isDropDown, setIsDropDown] = useState(true);
+  const [isDropDown, setIsDropDown] = useState(task.isDropDown ? task.isDropDown : false);
   const [titleEdit, setTitleEdit] = useState(task.title);
   const [subTaskTitle, setSubTaskTitle] = useState("");
   const [openSubtask, setOpenSubtask] = useState(false);
@@ -35,12 +37,12 @@ DisplayTaskItem) => {
   const onFocus = () => setFocusedSubtask(true);
   const onBlur = () => setFocusedSubtask(false);
   const [animationChild] = useAutoAnimate();
-
   useEffect(() => {
     if (editModeId === "") {
       setOpenSubtask(false);
     }
   }, [editModeId]);
+
   //   changing an existing task.title
   useEffect(() => {
     if (task.title !== titleEdit) {
@@ -64,31 +66,6 @@ DisplayTaskItem) => {
       }, 600);
     }
   }, [titleEdit]);
-
-  const handleAccent = () => {
-    if (actualMainTask.theme === "bg-slate-700") {
-      return "accent-[#333333]";
-      return "accent-[#334155]";
-    } else if (actualMainTask.theme === "bg-neutral-900") {
-      return "accent-[#922B3E]";
-      return "accent-[#171717b2]";
-    } else if (actualMainTask.theme === "bg-cyan-800") {
-      return "accent-[#546E7A]";
-      return "accent-[#155E75]";
-    } else if (actualMainTask.theme === "bg-emerald-700") {
-      return "accent-[#047857]";
-      return "accent-[#047857]";
-    } else if (actualMainTask.theme === "bg-rose-900") {
-      return "accent-[#BFB7A1]";
-      return "accent-[#881337]";
-    } else if (actualMainTask.theme === "bg-pink-700") {
-      return "accent-[#5E6C84]";
-      return "accent-[#BE185E]";
-    } else {
-      return "accent-[#eaeaea]";
-      return "accent-slate-700";
-    }
-  };
   const checkPrefix = (index: number) => {
     if (letters[index]) {
       return `${letters[index]}. `;
@@ -128,6 +105,29 @@ DisplayTaskItem) => {
     setSubTaskTitle("");
   };
 
+  useEffect(() => {
+    if (task.isSubtask && (task.isDropDown !== isDropDown || !task.isDropDown)) {
+      const newTask = tasksMain.map((taskInner) => {
+        if (taskInner.id === actualMainTask.id) {
+          // Update the tasklist for the specific object
+          const taskListInner = taskInner.taskList.map((item) => {
+            if (item.id === task.id) {
+              return { ...item, isDropDown: isDropDown };
+            } else {
+              return item;
+            }
+          });
+          return { ...taskInner, taskList: taskListInner };
+        } else {
+          return taskInner;
+        }
+      });
+      console.log("newTask after", newTask);
+
+      setTaskMain(newTask);
+    }
+  }, [isDropDown]);
+
   const updateTaskCompletion = (targetComplete: boolean) => {
     const newTask = tasksMain.map((taskInner) => {
       if (taskInner.id === actualMainTask.id) {
@@ -158,6 +158,7 @@ DisplayTaskItem) => {
     });
     setTaskMain(newTask);
   };
+
   const handleIsSubtaskComplete = () => {
     const total = task.subTaskList.length;
     const complete = task.subTaskList.filter((item) => item.isComplete).length;
@@ -175,7 +176,10 @@ DisplayTaskItem) => {
     >
       <div
         className={`px-1 py-[1px] ${task.isSubtask && isDropDown ? " border-b" : " "}  ${
-          task.isSubtask ? actualMainTask.theme + " bg-opacity-[0.05]" : " "
+          task.isSubtask
+            ? (actualMainTask.theme ? actualMainTask.theme : " bg-slate-600 ") +
+              " bg-opacity-[6%]"
+            : " "
         }`}
         onClick={() => {
           actualMainTask.id === editModeId ? null : setIsDropDown((prev) => !prev);
@@ -238,8 +242,12 @@ DisplayTaskItem) => {
             <div className="h-full w-8 flex items-center justify-center cursor-pointer">
               <input
                 type="checkbox"
-                className={` w-4 h-4  ${handleAccent()} ${
-                  task.isSubtask ? " opacity-0" : ""
+                className={` w-[14px] h-[14px] ${
+                  actualMainTask.theme
+                    ? accentVariants[actualMainTask.theme]
+                    : " accent-gray-300 "
+                } ${task.isSubtask ? " opacity-0 " : ""}  ${
+                  task.isComplete ? " opacity-25 " : ""
                 }`}
                 disabled={task.isSubtask}
                 checked={task.isComplete}
@@ -289,7 +297,6 @@ DisplayTaskItem) => {
                     key={subTask.id}
                     subTask={subTask}
                     isEdit={actualMainTask.id === editModeId}
-                    accent={handleAccent()}
                     isLastSubItem={i + 1 === task.subTaskList.length}
                     editModeId={editModeId}
                     actualTask={task}
@@ -311,7 +318,7 @@ DisplayTaskItem) => {
                     required
                     type="text"
                     placeholder="Add a subtask"
-                    className=" border py-[2px] px-2 w-full text-sm rounded bg-white"
+                    className=" border py-[2px] px-2 w-full text-base  rounded bg-white"
                     value={subTaskTitle}
                     onFocus={onFocus}
                     onBlur={onBlur}

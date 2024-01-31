@@ -5,7 +5,7 @@ import MainPage from "./components/MainPage";
 import { usePersistStore } from "./lib/zustand";
 function App() {
   const [openAddTask, setOpenAddTask] = useState(false);
-  const { backgroundColour, zoomNum } = usePersistStore();
+  const { backgroundColour } = usePersistStore();
 
   return (
     <div
@@ -13,7 +13,7 @@ function App() {
     >
       <div>
         <Navbar openAddTask={openAddTask} setOpenAddTask={setOpenAddTask} />
-        <div className={`${openAddTask ? " " : ""}  ${zoomNum}  `}>
+        <div className={`${openAddTask ? " blur" : ""} `}>
           <MainPage />
         </div>
       </div>

@@ -43,7 +43,7 @@ const AddNewSubTask = ({
       </button>
       <input
         type="text"
-        className=" w-full rounded px-2 py-[2px] border text-sm max-sm:text-xs "
+        className=" w-full rounded px-2 py-[2px] border text-base  "
         value={titleSubEdit}
         onChange={(e) => setTitleSubEdit(e.target.value)}
       />

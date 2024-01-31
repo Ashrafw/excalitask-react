@@ -21,6 +21,7 @@ const DisplayAddNewTask = ({ theme, taskId }: DisplayAddNewTaskTypes) => {
       isComplete: false,
       subTaskList: [],
       isSubtask: false,
+      isDropDown: true,
     };
 
     const newTaskList = tasksMain.map((item) => {

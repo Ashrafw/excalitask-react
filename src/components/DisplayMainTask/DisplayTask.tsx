@@ -36,7 +36,6 @@ const DisplayTask = ({ actualMainTask, editModeId, setEditModeId }: DisplayTaskT
           }
         });
         setTaskMain(newTask);
-        console.log("newTask", newTask);
       }, 600);
     }
   }, [categoryEdit]);
@@ -49,10 +48,12 @@ const DisplayTask = ({ actualMainTask, editModeId, setEditModeId }: DisplayTaskT
     <div
       className={` relative shadow-xl rounded-lg overflow-hidden  max-w-[400px] min-w-[310px] w-[95%] ${actualMainTask.fontStyle} `}
     >
-      <div className={`min-h-12  ${actualMainTask.theme}`}>
+      <div className={`min-h-12  ${actualMainTask.theme ?? " bg-slate-600"}`}>
         {actualMainTask.id === editModeId ? (
           <div
-            className={`rounded-tl rounded-tr border-slate-800 p-2 ${actualMainTask.theme} text-gray-800 flex justify-between items-center gap-4`}
+            className={`rounded-tl rounded-tr border-slate-800 p-2 ${
+              actualMainTask.theme ?? " bg-slate-600"
+            } text-gray-800 flex justify-between items-center gap-4`}
           >
             <input
               type="text"
@@ -69,7 +70,9 @@ const DisplayTask = ({ actualMainTask, editModeId, setEditModeId }: DisplayTaskT
           </div>
         ) : (
           <div
-            className={`rounded-tl rounded-tr  p-2 ${actualMainTask.theme} text-gray-200 flex justify-between items-center gap-4`}
+            className={`rounded-tl rounded-tr  p-2 ${
+              actualMainTask.theme ?? " bg-slate-600"
+            } text-gray-200 flex justify-between items-center gap-4`}
           >
             <div className=" grid  grid-flow-col items-center gap-1">
               <div className="relative w-[34px] h-[34px] bg-slate-50 bg-opacity-20 rounded-full">
@@ -87,7 +90,9 @@ const DisplayTask = ({ actualMainTask, editModeId, setEditModeId }: DisplayTaskT
                   }}
                 />
                 <div
-                  className={` absolute top-[3px] left-[3px] w-[28px] h-[28px] ${actualMainTask.theme} rounded-full text-[10px] font-extrabold flex justify-center items-center`}
+                  className={` absolute top-[3px] left-[3px] w-[28px] h-[28px] ${
+                    actualMainTask.theme ?? " bg-slate-600"
+                  } rounded-full text-[10px] font-extrabold flex justify-center items-center`}
                 >
                   {checkCompletionPercentage(actualMainTask)}
                   <span className=" font-semibold">%</span>
@@ -133,6 +138,7 @@ const DisplayTask = ({ actualMainTask, editModeId, setEditModeId }: DisplayTaskT
                   actualMainTask.taskList[i + 1].isSubtask
                 }
                 isBorder={actualMainTask.taskList.length === i + 1}
+                theme={actualMainTask.theme}
               />
             ))}
           </div>
@@ -140,18 +146,19 @@ const DisplayTask = ({ actualMainTask, editModeId, setEditModeId }: DisplayTaskT
         {actualMainTask.id === editModeId ? (
           <div className={` rounded-lg flex flex-col `}>
             <div
-              className={` ${actualMainTask.theme} bg-opacity-60 p-2 flex flex-col gap-2`}
+              className={` ${
+                actualMainTask.theme ?? " bg-slate-600"
+              } bg-opacity-60 p-2 flex flex-col gap-2`}
             >
               <DisplayAddNewTask
-                theme={actualMainTask.theme}
+                theme={actualMainTask.theme ?? " bg-slate-600"}
                 taskId={actualMainTask.id}
-
-                // focused={focused}
-                // setFocused={setFocused}
               />
             </div>
             <div
-              className={` ${actualMainTask.theme} bg-opacity-10 p-2 flex flex-col gap-2`}
+              className={` ${
+                actualMainTask.theme ?? " bg-slate-600"
+              } bg-opacity-10 p-2 flex flex-col gap-2`}
             >
               <div
                 className={`flex flex-col gap-2 shadow rounded p-1 bg-white mmb-2 w-full   `}
@@ -181,7 +188,7 @@ const DisplayTask = ({ actualMainTask, editModeId, setEditModeId }: DisplayTaskT
 
                 {isEditSettings ? (
                   <AddSettingSingle
-                    theme={actualMainTask.theme}
+                    theme={actualMainTask.theme ?? " bg-slate-600"}
                     fontStyle={actualMainTask.fontStyle}
                     prefix={actualMainTask.prefix}
                     taskId={actualMainTask.id}
@@ -189,22 +196,22 @@ const DisplayTask = ({ actualMainTask, editModeId, setEditModeId }: DisplayTaskT
                 ) : null}
               </div>
 
-              <div className=" grid grid-cols-2 items-center px-4 py-2 rounded gap-4 w-full justify-center bg-white text-gray-50 cursor-pointer text-sm">
+              <div className=" grid grid-cols-2 px-4 py-2 rounded gap-4 w-full bg-white text-gray-50 text-sm">
                 <button
-                  //   onMouseEnter={() => setIsShown(true)}
-                  //   onMouseLeave={() => setIsShown(false)}
                   onClick={() => {
                     handleDeleteAll(actualMainTask.id);
                     setEditModeId("");
                   }}
-                  className={` bg-gray-200 w-full h-full shadow text-gray-900 py-2 text-sm rounded flex items-center justify-center gap-2 hover:bg-opacity-70 `}
+                  className={` bg-gray-200  shadow text-gray-900 py-2 text-sm rounded flex items-center justify-center gap-2 hover:bg-opacity-70 `}
                 >
                   <FaRegTrashAlt />
                   <p>Delete All</p>
                 </button>
                 <button
                   onClick={() => setEditModeId("")}
-                  className={` ${actualMainTask.theme} w-full h-full shadow text-gray-50 py-2 text-sm rounded flex items-center justify-center gap-2  hover:bg-opacity-90 `}
+                  className={` ${
+                    actualMainTask.theme ?? " bg-slate-600"
+                  }  shadow text-gray-50 py-2 text-sm rounded flex items-center justify-center  hover:bg-opacity-90 `}
                 >
                   Done
                 </button>

@@ -30,6 +30,7 @@ const AddNewSingleTask = ({
         isComplete: false,
         subTaskList: [],
         isSubtask: false,
+        isDropDown: true,
       },
     ]);
     setTaskTitle("");
@@ -49,7 +50,7 @@ const AddNewSingleTask = ({
           type="text"
           placeholder="Add a new task"
           // className="shadow rounded-full p-1  px-4 w-full"
-          className="border rounded p-1 px-4 w-full text-sm"
+          className="border rounded p-1 px-4 w-full text-base"
           autoFocus
           value={taskTitle}
           onChange={(e) => setTaskTitle(e.target.value)}

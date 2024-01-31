@@ -13,6 +13,7 @@ export type taskType = {
   isComplete: boolean;
   subTaskList: SubTaskType[];
   isSubtask: boolean;
+  isDropDown?: boolean;
 };
 export type MainTaskType = {
   id: string;
